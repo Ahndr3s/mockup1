@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/*----------------Navbar styles stars----------------*/
+.navbar {
+    position: relative;
+    background-color: var(--bg-primary);
+    height: 8vh;
+    transition: width 600ms ease;
+  }
+  
+  .navbar-nav {
+    list-style: none;
+    align-items: center;  
+    justify-content: flex-start;
+  }
+
+  .nav-elements ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+
+  .nav-elements ul a {
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  
+  .nav-elements ul a.active {
+    color: #574c4c;
+    font-weight: 500;
+    position: relative;
+  }
+
+  .nav-elements ul a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #574c4c;
+  }
+  
+  .navbar, .navbar-nav {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .nav-item {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .nav-item:last-child {
+    margin-right: auto;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: var(--transition-speed);
+  }
+  
+  .nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+  }
+  
+  .logo {
+    margin-top: auto;
+  }
+
+  .search-icon {
+    width: 50%;
+    height: 50%;
+    margin-bottom: auto;
+    justify-content: right;
+  }
+  
+  .logo-img {
+    height: 50px;
+    width: 150px;
+  }
+  
+  .nav-btn{
+    display: none;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  /*----------------Navbar styles ends----------------*/
+
+  @media only screen and (max-width:600px) {
+      /*-----Responsive Navbar starts-----*/
+  .navbar-nav > .nav-item{
+    display: none;
+
+  }
+
+  .navbar-nav{
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .menu-icon {
+    display: flex;
+    margin-right: 4rem;
+    margin-left: 1rem;
+  }
+
+  .nav-elements {
+    position: absolute;
+    left: 0;
+    top: 60px;
+    background-color: var(--bg-primary);
+    width: 0px;
+    height: calc(100vh - 60px);
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+  }
+
+  .nav-elements.active {
+    width: 270px;
+  }
+
+  .nav-elements ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-elements ul li {
+    margin-right: unset;
+    margin-top: 12px;
+    padding-top: 5px;
+  }
+
+  .nav-elements li {
+    height: fit-content;
+  }
+
+  /*-----Responsive Navbar ends-----*/
+  }
