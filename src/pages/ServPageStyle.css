@@ -1,0 +1,21 @@
+.contenedor {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    height: 300px; 
+  }
+
+  .div1,
+  .div2 {
+    flex: 1; 
+  }
+
+  .div1 {
+    background-color: darkslateblue;
+  }
+
+  .serv-img {
+    margin-left: 9rem;
+    width: 35%;
+    height: 50vh;
+}

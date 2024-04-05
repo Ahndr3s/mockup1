@@ -1,9 +1,114 @@
+.titles {
+  margin-left: 50px;
+}
 
-.titles{
-    margin-left: 50px;
+.typing {
+  font-family: monospace;
+  /* border-right: 2px solid #000; */
+  font-size: 63px;
+  white-space: nowrap; /* keep text in one line */
+  overflow: hidden; /* hide overflow characters */
+  animation: typing 2s steps(40) infinite, blink-caret 0.75s step-end infinite
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #fff;
+  }
 }
 
 .simple-form {
-    margin: 50px;
-    justify-items: unset;
+  margin: 50px;
+  justify-items: unset;
+}
+
+.home-title {
+  justify-self: center;
+}
+
+.home-txt {
+  font-size: large;
+  text-align: justify;
+  display: grid;
+}
+.home-p {
+  font-size: large;
+  text-align: center;
+  text-align: justify;
+  margin-left: 180px;
+  margin-right: 180px;
+}
+
+.serv-cards {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.serv-cards div:nth-child(3) {
+  grid-column: 1 / span 2;
+}
+
+.serv-card {
+  border: solid 1px transparent;
+  background-image: linear-gradient(#601875, #102172),
+    /* linear-gradient(90deg, #e595f9, #b3d9d7, #87e0f7); */
+      linear-gradient(90deg, #650577, #b3d9d7, #87e0f7);
+  height: 550px;
+  margin-bottom: 2rem;
+}
+
+.serv-card-img {
+  justify-self: center;
+  margin-top: auto;
+  margin-bottom: 0;
+  width: fit-content;
+  height: 10rem;
+  border-radius: 20px;
+}
+
+.serv-btn {
+  width: 16rem;
+  height: 2rem;
+  border-radius: 40px;
+  background-image: linear-gradient(90deg, #601875, #102172);
+  border-style: solid;
+  border-color: #fff;
+  justify-self: center;
+  font-size: large;
+}
+
+@media only screen and (max-width: 600px) {
+  .home-p {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .typing {
+    animation: typing 2s steps(12) infinite, blink-caret 0.75s step-end infinite
+  }
+
+  .serv-cards {
+    display: grid;
+    grid-template-columns: auto;
+  }
+
+  .serv-cards div:nth-child(3) {
+    grid-column: unset;
+  }
+  
 }

@@ -1,39 +1,105 @@
-
 .grid-banner {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 18rem 18rem 18rem;
-    row-gap: 50px;
-    margin-left: auto;
-    margin-right: auto;
+  display: grid;
+  justify-content: center;
+  margin-left: 180px;
+  margin-right: 180px;
 }
 
-.banner {
-    background-color: #8d8d91;
-    width: 250px;
-    height: 300px;    
-    border-radius: 8px;
-    margin-bottom: 15px;
+.course-card {
+  display: flex;
+  align-items: center;
+  width: 800px;
+  height: 450px;
+  border: double 1px transparent;
+  background-image: linear-gradient(#601875, #102172),
+    linear-gradient(90deg, #650577, #f66c49, #f82f5c);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  margin-bottom: 15px;
 }
+
+.course-card, .course-card-img {
+  border-radius: 15px;
+}
+
+.course-card-img {
+  align-self: center;
+  width: 25rem;
+  height: 20rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.card.info {
+  width: fit-content;
+  display: grid;
+  margin-right: 6rem;
+}
+
+.course-mod {
+ background: linear-gradient(90deg, #b3d9d7, #87e0f7);
+  width: fit-content;
+  height: auto;
+  color: var(--bg-primary);
+  text-align: inherit;
+  border-radius: 5px;
+  margin-bottom: 0;  
+}
+
+.course-data {
+  display: flex;
+  justify-content: space-around;
+  font-size: small;
+}
+
+.categorie {
+  display: grid;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+.categorie h4 {
+  justify-self: left;
+  margin-left: 0;
+}
+
+.categorie hr{
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 
 /*Responsive courses styles starts*/
 @media only screen and (max-width: 600px) {
+  .grid-banner {
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 30px;
+    column-gap: 10px;
+    margin-right: 3rem;
+    margin-left: 3rem;
+  }
 
-    .grid-banner {
-        display: grid;
-        grid-template-columns: auto;
-        row-gap: 30px;
-        column-gap: 10px;
-        margin-left: 3rem;
-    }
+  .course-card {
+    display: grid;
+    width: 250px;
+    min-height: 200px;
+  }
 
-    .banner {
-        border: 2px;
-        background-color: #8d8d91;
-        width: 230px;
-        min-height: 200px;
-        padding: 15px;
-    }
+  .course-card-img {
+    width: 12rem;
+    height: 5rem;
+  }
+
+  .c-info {
+    text-align: justify;
+    font-size: medium;
+  }
+
+  .c-list{
+    display: none;
+  }
+
 }
 
-/*Responsive courses styles endss*/
+/*Responsive courses styles ends*/

@@ -1,21 +1,25 @@
-import { useState } from "react";
-export const useForm = (initialForm = {}) => {
+import { useState } from 'react';
 
-const [formState, setformState] = useState(initialForm)
+export const useForm = ( initialForm = {} ) => {
+  
+    const [ formState, setFormState ] = useState( initialForm );
 
+    const onInputChange = ({ target }) => {
+        const { name, value } = target;
+        setFormState({
+            ...formState,
+            [ name ]: value
+        });
+    }
 
-  const onInputChange = ({ target }) => {
-    const { value, name } = target;
-    setformState({ ...formState, [name]: value });
-  };
+    const onResetForm = () => {
+        setFormState( initialForm );
+    }
 
-  const onSubmitForm = (target) => {
-    target.preventDefault()
-    setformState({initialForm})
-    console.log('live froever')
-  }
-
-  return {
-    ...formState,formState, onInputChange, onSubmitForm
-  };
-};
+    return {
+        ...formState,
+        formState,
+        onInputChange,
+        onResetForm,
+    }
+}

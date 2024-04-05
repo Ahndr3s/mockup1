@@ -1,19 +1,19 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { Home } from "../pages/Home";
-import { Courses } from "../pages/Courses";
-import { About } from "../pages/About";
-import { Navbar } from "../ui/components/Navbar";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "../pages/Login";
+import { PublicRouter } from "../pages/routes/PublicRouter";
+import { PrivateRoutes } from "./PrivateRoutes";
+
 
 
 export const AppRouter = () => {
+  
   return (
-    <>
-      <Navbar/>
-      <Routes>
-        <Route path="home" element={<Home />} />
-        <Route path="courses" element={<Courses />} />
-        <Route path="about" element={<About />} />
-        <Route path="/" element={<Navigate to={"/home"} />} />
+    <>      
+      <Routes> 
+        {/* <Route path="/*" element={<PrivateRoutes><PublicRouter/></PrivateRoutes>} /> */}
+        <Route path="/*" element={<PublicRouter><PrivateRoutes/></PublicRouter>} />
+        <Route path="login" element={<Login />} />
+        {/* <Route path="/*" element={<PublicRouter/>} /> */}
       </Routes>
     </>
   );

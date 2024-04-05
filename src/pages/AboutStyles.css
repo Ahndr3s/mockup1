@@ -1,46 +1,93 @@
-
-.text-info, .team-container {
-    font-size: large;
-    text-align: justify;
+.p-info,
+.team-container,
+.form-container {
+  font-size: large;
+  text-align: justify;
 }
 
-.p-info, .subtitle {
-    margin-left: 180px;
-    margin-right: 180px;
+.subtitle {
+  justify-self: left;
 }
 
-.simple-form{
-    justify-items: center; 
+.p-info,
+.simple-form {
+  justify-items: center;
+}
+
+.team-container,
+.form-container {
+  display: grid;
+}
+
+.p-info {
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .team-container {
-    display: grid;
-    justify-content: center;
-    row-gap: 50px;
-    background-color: #237BA0;
-    border-radius: 4px;
+  justify-content: center;
+  row-gap: 50px;
+  border-radius: 4px;
 }
 
-.team-container div:nth-child(2n+1){
-    background-color: #022a4a;
+.team-container div:nth-child(2n + 1) {
+  background-image: linear-gradient(#102172, #601875),
+    linear-gradient(90deg, #553c88, #b268c9, #601875);
+}
+
+.form-container h2 {
+  margin-left: 260px;
+}
+
+.team-card {
+  border: double 1px transparent;
+  background-image: linear-gradient(#601875, #102172),
+    linear-gradient(90deg, #553c88, #b268c9, #601875);
+  height: 400px;
+}
+
+.team-card-body {
+  display: flex;
+}
+
+.team-card-img {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 90%;
+}
+
+.team-data {
+  display: grid;
+  font-size: medium;
+  justify-content: center;
+  width: fit-content;
+}
+
+.p-resume {
+  margin-left: 1rem;
+  margin-right: 3rem;
 }
 
 
 @media only screen and (max-width: 600px) {
-    .subtitle{
-        margin-left: 2rem;
-    }
+  .subtitle {
+    margin-left: 2rem;
+  }
 
-    .txt-team{
-        margin-bottom: 0;;
-        text-align: justify;
-        width: 300px;
-    }
+  .form-container h3 {
+    margin-left: 40px;
+  }
 
-    .p-info, .txt-team{
-        margin-left: 2rem;
-        margin-right: 2rem;
-    }   
+  .txt-team {
+    margin-bottom: 0;
+    text-align: justify;
+    width: 300px;
+  }
 
-    
+  .p-info,
+  .txt-team {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
 }

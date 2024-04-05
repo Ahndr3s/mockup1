@@ -1,9 +1,6 @@
 import { SimpleForm } from "../components/SimpleForm";
-import { TeamCard } from "../components/TeamCard";
 import "./AboutStyles.css";
-import Alberto from '../assets/Alberto.png'
-import Pascal from '../assets/Pascal.jpg'
-import Emil from '../assets/Emil.png'
+import { ConsultorsList } from "../components/ConsultorsList";
 
 export const About = () => {
   return (
@@ -44,16 +41,16 @@ export const About = () => {
           Estamos encantados de presentar al equipo de profesionales dedicados a
           redefinir su experiencia en educacion
         </p>
-        <TeamCard name="Alberto Moreno" img={Alberto}/>
-        <TeamCard name="Pascal" img={Pascal}/>
-        <TeamCard name="Emil" img={Emil}/>
+        <ConsultorsList />
         
       </div>
 
-      <h3 className="subtitle">Unete al equipo</h3>
-      {/* COMPOENTE DE FORM */}
+      <div className="form-container">
+        <h3 className="subtitle">Unete al equipo</h3>
+        {/* COMPOENTE DE FORM */}
 
-      <SimpleForm />
+        <SimpleForm type={2} />
+      </div>
     </>
   );
 };
