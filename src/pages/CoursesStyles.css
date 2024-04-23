@@ -1,8 +1,6 @@
-.grid-banner {
-  display: grid;
-  justify-content: center;
-  margin-left: 180px;
-  margin-right: 180px;
+.slide {
+  overflow: hidden;
+  height: max-content;  
 }
 
 .course-card {
@@ -16,15 +14,29 @@
   background-origin: border-box;
   background-clip: content-box, border-box;
   margin-bottom: 15px;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.slide .course-card {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.course-card .course-title  {
+  font-size: 18px;
 }
 
 .course-card, .course-card-img {
   border-radius: 15px;
 }
 
+.c-subtitle {
+  margin-left: 3rem;
+}
+
 .course-card-img {
   align-self: center;
-  width: 25rem;
+  width: 21rem;
   height: 20rem;
   margin-right: 1rem;
   margin-left: 1rem;
@@ -37,7 +49,7 @@
 }
 
 .course-mod {
- background: linear-gradient(90deg, #b3d9d7, #87e0f7);
+  background: linear-gradient(90deg, #b3d9d7, #87e0f7);
   width: fit-content;
   height: auto;
   color: var(--bg-primary);
@@ -46,10 +58,21 @@
   margin-bottom: 0;  
 }
 
+.course-title {
+  font-size: 20px;  
+}
+
+.course-title, .course-mod {
+  margin-left: 1rem;
+}
+
 .course-data {
   display: flex;
   justify-content: space-around;
-  font-size: small;
+}
+
+.c-list, .course-data {
+  font-size: 12px;
 }
 
 .categorie {
@@ -63,7 +86,7 @@
   margin-left: 0;
 }
 
-.categorie hr{
+.categorie hr {
   width: 100%;
   margin-bottom: 1rem;
 }
@@ -82,7 +105,7 @@
 
   .course-card {
     display: grid;
-    width: 250px;
+    width: 280px;
     min-height: 200px;
   }
 
@@ -91,9 +114,18 @@
     height: 5rem;
   }
 
+  .course-title {    
+    margin-right: 2rem;
+    font-size: 17px;
+  }
+
+  .c-details {
+    font-size: 12px;
+  }
+
   .c-info {
     text-align: justify;
-    font-size: medium;
+    font-size: 13px;
   }
 
   .c-list{

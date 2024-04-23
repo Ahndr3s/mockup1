@@ -8,9 +8,10 @@ import { Profile } from "../Profile";
 import { MyCourses } from "../MyCourses";
 import { CoursePage } from "../CoursePAge";
 import { ServPage } from "../ServPage";
+import { ResourceDesign } from "../ResourceDesign";
 import { TeamMember } from "../../components/TeamMember";
 import { SearchPage } from "../SearchPAge";
-
+import { Contact } from "../Contact";
 
 
 export const PublicRouter = () => {
@@ -26,7 +27,9 @@ export const PublicRouter = () => {
         <Route path="profile" element={<Profile />} />
         <Route path="coursePage" element={<CoursePage />} />
         <Route path="servPage" element={<ServPage />} />
-        <Route path="SearchPage" element={<SearchPage />} />
+        <Route path="resDes" element={<ResourceDesign />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="SearchPage" element={<SearchPage />} />  
 
         <Route path="teamMember/:id" element={<TeamMember />} />        
         <Route path="/" element={<Navigate to={"home"} />} />

@@ -4,7 +4,7 @@ body {
 }
 
 :root {
-  font-family: sans-serif, Inter, system-ui, Avenir, Helvetica, Arial;
+  font-family: roboto, sans-serif, Inter, system-ui, Avenir, Helvetica, Arial;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -22,7 +22,7 @@ body {
 
 .page-title {
   text-align: center;
-  font-size: 3.2rem;
+  font-size: 45px;
   line-height: 1;
   color: #fff;
   letter-spacing: 10px;
@@ -59,23 +59,53 @@ input[type="password"], textarea {
 /*----------------Common card styles starts----------------*/
 .serv-card, .team-card{
   display: grid;
-  width: 550px;
-  margin-bottom: 15px;
+  width: 570px;
   justify-self: center;
   border-radius: 10px;
   background-origin: border-box;
   background-clip: content-box, border-box;
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .card-info{
   display: grid;
 }
+
+
+.serv-btn, .edit-btn, .del-btn {
+  height: 2rem;
+  border-radius: 40px;
+  border-style: solid;
+  border-color: #fff;
+  justify-self: center;
+  font-size: large;
+}
+
+.edit-btn, .del-btn {
+  width: 3rem;
+}
+
+.serv-btn {
+  width: 12rem;
+  background-image: linear-gradient(90deg, #601875, #102172);  
+}
+
 /*----------------Common card styles ends----------------*/
 
 /*----------------Slider styles starts----------------*/
 .slider-container{
   display: flex;
   justify-items: center;
+  animation: fadeIn 1s ease-out forwards;
 }
 
 .slide {  

@@ -18,8 +18,7 @@
   margin-bottom: 0%;
 }
 
-.team-titles h1,
-h3 {
+.team-name, .team-title {
   margin-right: 6rem;
 }
 

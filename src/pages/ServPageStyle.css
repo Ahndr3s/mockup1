@@ -1,21 +1,51 @@
-.contenedor {
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    height: 300px; 
+.serv-title {
+  display: flex;
+  justify-content: center;
+}
+
+.serv-list-container {
+  display: grid;
+  background-color: #242424;
+}
+
+.serv-list {
+  display: grid;  
+  padding-left: 9rem;
+  padding-right: 9rem;  
+  text-align: justify;
+}
+
+.serv{
+  margin-bottom: 1rem;
+}
+
+.spec-serv-container {
+  display: grid;  
+  justify-content: flex-start;
+  text-align: justify;
+}
+
+.spec-serv-container, .serv-subtitle{
+  display: grid;
+  justify-content: center;  
+  font-size: 25px;
+}
+
+.spec-serv-list {
+  font-size: 18px;
+}
+
+.spec-serv {
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .serv-list {
+    padding-left: 3rem;
+    padding-right: 3rem; 
   }
 
-  .div1,
-  .div2 {
-    flex: 1; 
+  .spec-serv-list{
+    padding-right: 3rem;
   }
-
-  .div1 {
-    background-color: darkslateblue;
-  }
-
-  .serv-img {
-    margin-left: 9rem;
-    width: 35%;
-    height: 50vh;
 }

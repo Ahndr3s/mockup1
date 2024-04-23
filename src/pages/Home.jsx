@@ -47,6 +47,7 @@ export const Home = () => {
           title="Consultoría en Gestión Escolar: Estrategias para el Éxito"
           resume="Eleva tu institución con nuestra consultoría especializada en gestión escolar. Aprende y aplica estrategias efectivas que no solo mejorarán tus proyectos escolares, sino que también los llevarán a un nuevo nivel de excelencia y eficiencia."
           btntxt={`Ver Más`}
+          pageRoute={'/servPage'}
           />
         <Card
           type={1}
@@ -54,6 +55,7 @@ export const Home = () => {
           resume="Descubre nuestro extenso catálogo de recursos educativos, cada uno diseñado para enriquecer tu práctica docente y administrativa"
           info={['Planeaciones y Proyectos Escolares de Mejora Continua', 'Material Administrativo Eficiente']}
           btntxt={`Ver Más`}
+          pageRoute={'/resDes'}
         />
       </div>
     </>

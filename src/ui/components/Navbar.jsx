@@ -17,12 +17,10 @@ export const Navbar = () => {
   const handleShowSearch = () => {
     navigate("/SearchPage", {
       replace: true,
-    });
-    handleShowNavbar();
+    });    
   };
 
   const { user, logged } = useContext(AuthContext);
-  // console.log(user);
   const navigate = useNavigate();
 
   const onLogout = () => {
@@ -73,11 +71,16 @@ export const Navbar = () => {
                     <span className="link-text">Mis Cursos</span>
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item userName">
                   <span className="link-text">{user?.email}</span>
                 </li>
               </>
             )}
+            <li className="nav-item" onClick={handleShowNavbar}>
+              <NavLink className={"nav-link"} to={"/contact"}>
+                <span className="link-text">Contacto</span>
+              </NavLink>
+            </li>
             <li className="nav-item" onClick={onLogout}>
               <NavLink className={"nav-link"} to={"/login"}>
                 <span className="link-text">Cerrar Sesión</span>

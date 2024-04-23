@@ -1,5 +1,6 @@
 .titles {
   margin-left: 50px;
+  margin-right: 50px;
 }
 
 .typing {
@@ -42,9 +43,11 @@
   font-size: large;
   text-align: justify;
   display: grid;
+  margin-bottom: 5vh;
 }
+
 .home-p {
-  font-size: large;
+  font-size: 25px;
   text-align: center;
   text-align: justify;
   margin-left: 180px;
@@ -69,7 +72,7 @@
     /* linear-gradient(90deg, #e595f9, #b3d9d7, #87e0f7); */
       linear-gradient(90deg, #650577, #b3d9d7, #87e0f7);
   height: 550px;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .serv-card-img {
@@ -81,15 +84,9 @@
   border-radius: 20px;
 }
 
-.serv-btn {
-  width: 16rem;
-  height: 2rem;
-  border-radius: 40px;
-  background-image: linear-gradient(90deg, #601875, #102172);
-  border-style: solid;
-  border-color: #fff;
-  justify-self: center;
-  font-size: large;
+.serv-title, .card-info {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 @media only screen and (max-width: 600px) {

@@ -93,6 +93,11 @@
     margin-right: 2rem;
   }
 
+  .userName {
+    display: flex;
+    align-items: center;
+  }
+
 
   /*----------------Navbar styles ends----------------*/
 
@@ -125,7 +130,7 @@
     top: 60px;
     background-color: var(--bg-primary);
     width: 0px;
-    height: calc(100vh - 60px);
+    height: calc(110vh - 60px);
     transition: all 0.3s ease-in;
     overflow: hidden;
     z-index: 1000;

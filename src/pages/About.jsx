@@ -1,4 +1,3 @@
-import { SimpleForm } from "../components/SimpleForm";
 import "./AboutStyles.css";
 import { ConsultorsList } from "../components/ConsultorsList";
 
@@ -43,13 +42,6 @@ export const About = () => {
         </p>
         <ConsultorsList />
         
-      </div>
-
-      <div className="form-container">
-        <h3 className="subtitle">Unete al equipo</h3>
-        {/* COMPOENTE DE FORM */}
-
-        <SimpleForm type={2} />
       </div>
     </>
   );

@@ -17,11 +17,11 @@ export const TeamMember = () => {
       <div className="wrapper">
         <div className="page-header">
           <div className="team-titles">
-            <h1>{consultor.name}</h1>
+            <h1 className="team-name">{consultor.name}</h1>
             <h5>
               <FontAwesomeIcon icon={faEnvelope} /> {consultor.email}
             </h5>
-            <h3>{consultor.title}</h3>
+            <h3 className="team-title">{consultor.title}</h3>
           </div>
         </div>
 

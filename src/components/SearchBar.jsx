@@ -5,6 +5,7 @@ import queryString from "query-string";
 import { getContentByName } from "../helpers/getContentByName";
 
 export const SearchBar = () => {
+  let cardOption;
   const navigate = useNavigate();
   const location = useLocation();
   const { q = "" } = queryString.parse(location.search);
@@ -48,16 +49,34 @@ export const SearchBar = () => {
           Contenido No Encontrado
         </div>
         {contents.map((content) => {
+          if(content.type === '2') {
+            cardOption = (
+              <Card
+                style={{marginLeft: '2rem'}}
+                type={Number(content.type)}
+                id={content.id}
+                key={content.id}
+                title={content.name}              
+                Coursedata={content.Coursedata}
+                btntxt={"Inscribirse"}
+              />
+            )
+          } else {
+            cardOption = (
+              <Card
+                style={{marginLeft: '2rem'}}
+                type={Number(content.type)}
+                id={content.id}
+                key={content.id}
+                title={content.name}
+                img={content.img}
+                resume={content.info}
+                btntxt={"Cónocenos"}
+              />
+            )
+          }
           return (
-            <Card
-              type={3}
-              id={content.id}
-              key={content.id}
-              title={content.name}
-              img={content.img}
-              resume={content.info}
-              btntxt={"Cónocenos"}
-            />
+            cardOption
           );
         })}
       </div>

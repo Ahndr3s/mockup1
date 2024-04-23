@@ -29,7 +29,6 @@ export const SimpleForm = (props) => {
     case 1:
       formOption = (
         <form className="simple-form" onSubmit={handleSubmit}>
-          <label>Correo</label>
           <input
             type="email"
             name="email"
@@ -37,7 +36,6 @@ export const SimpleForm = (props) => {
             // value={email}
             // onChange={(e) => {setemail(e.target.value)}}
           />
-          <label>Password</label>
           <input
             type="password"
             name="password"
@@ -46,7 +44,7 @@ export const SimpleForm = (props) => {
             // onChange={(e) => {setpassword(e.target.value)}}
           />
 
-          <button type="button" onClick={onLogin}>
+          <button className="serv-btn" type="button" onClick={onLogin}>
             Enviar
           </button>
         </form>
@@ -83,20 +81,47 @@ export const SimpleForm = (props) => {
       );
       break;
 
-    // case 3:
-    //   formOption = (  
-    //     <div className="search-container">
-    //       <form className="search-form">
-    //         <input type="text" name="search" className="search-bar" placeholder="Buscar Cualquier Cosa" autoComplete="off"/>        
-    //         <button className="search-form-btn" >Buscar</button>
-    //       </form>   
-    //       <div className="result-container">
-    //         <div className="search-res-neg">Content Not Found</div>
-    //         <div className="search-res-pos">Search Result</div>
-    //       </div>
-    //     </div>
-    //   );
-    //   break;
+    case 3:
+      formOption = (
+        <form className="simple-form">
+          <input
+            type="text"
+            name="userName"
+            className="userName"
+            placeholder="Nombre"
+            autoComplete="off"
+          />
+          <input
+            type="text"
+            name="email"
+            className="email"
+            placeholder="Correo"
+            autoComplete="off"
+          />
+          <input
+            type="text"
+            name="phone"
+            className="phone"
+            placeholder="Telefono"
+            autoComplete="off"
+          />
+          <label className="text-desc">
+            Por favor, déjanos tu pregunta o comentario.
+          </label>
+          <textarea
+            name="description"
+            rows={4}
+            cols={40}
+            placeholder="Comentario/Duda"
+            // value={description}
+            // onChange={(e) => {setdescription(e.target.value)}}
+          ></textarea>
+          <button className="serv-btn" type="button" >
+            Enviar
+          </button>
+        </form>
+      );
+      break;
     default:
       break;
   }

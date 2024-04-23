@@ -38,6 +38,7 @@
 }
 
 .result-container{
+    display: grid;
     font-size: xx-large;
 }
 
@@ -45,7 +46,45 @@
     font-size: large;
 }
 
-.search-res-neg, .search-res-pog {
+.search-res-neg, .search-res-pos {
     margin-top: 3rem;
     margin-bottom: 3rem;
-} 
+}
+
+.search-body .course-card {    
+    width: 570px;
+    height: 400px;
+}
+
+.search-body .course-mod {
+    margin-left: unset;
+}
+
+.search-body .course-card-img {
+    width: 16rem;
+    height: 19rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .search-form{
+        margin-bottom: 10px;
+    }
+    
+    .search-res-pos {
+        margin-bottom: 2rem;
+    }
+
+    .search-container{
+        grid-template-columns: 1fr;
+    }
+
+    .search-body .course-card {
+        margin-left: 1rem;        
+        width: 20rem;
+    }
+
+    .search-body .course-card-img {     
+        height: 8rem;
+    }
+
+}

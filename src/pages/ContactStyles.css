@@ -1,0 +1,42 @@
+.p-contact {
+    margin-left: 16rem;
+    margin-right: 16rem;
+    font-size: 25px;
+    text-align: justify;
+}
+
+.text-desc {
+  margin-left: 30rem;
+  margin-right: 30rem;
+  font-size: 18px;
+}
+
+.socials-container {
+  display: grid ;
+}
+
+.socials-subtitle {
+  justify-self: center;
+  margin-bottom: 10vh;
+}
+
+.socials-icons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .p-contact {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size: 25px;
+  }
+
+  .text-desc {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+
+}
+
