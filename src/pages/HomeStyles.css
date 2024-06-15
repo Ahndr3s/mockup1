@@ -9,7 +9,8 @@
   font-size: 63px;
   white-space: nowrap; /* keep text in one line */
   overflow: hidden; /* hide overflow characters */
-  animation: typing 2s steps(40) infinite, blink-caret 0.75s step-end infinite
+  /* animation: typing 2s steps(40) infinite, blink-caret 0.75s step-end infinite; */
+  animation: typing 2s steps(40) infinite;
 }
 
 @keyframes typing {
@@ -28,6 +29,11 @@
   50% {
     border-color: #fff;
   }
+}
+.titles .typing {
+  margin-top: 0%;
+  font-size: 45px;
+  width: min-content;
 }
 
 .simple-form {
@@ -79,8 +85,8 @@
   justify-self: center;
   margin-top: auto;
   margin-bottom: 0;
-  width: fit-content;
-  height: 10rem;
+  width: 31rem;
+  height: 15rem;
   border-radius: 20px;
 }
 
@@ -103,6 +109,12 @@
     display: grid;
     grid-template-columns: auto;
   }
+
+  .serv-card-img {
+    height: 17vh;
+  }
+  
+
 
   .serv-cards div:nth-child(3) {
     grid-column: unset;

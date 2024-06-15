@@ -1,18 +1,23 @@
+import { useEffect } from "react";
 import { Card } from "../components/Card";
 import "./HomeStyles.css";
 
 export const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className="titles-container">
-        <h1 className="titles typing">IATUTORES</h1>
+        <h1 className="titles">Bienvenido a <p className="typing">IA TUTORES</p></h1>
         <p className="titles">
           En IA tutores, reinventamos el camino hacia la excelencia educativa.
         </p>
       </div>
 
       <div className="home-txt">
-        <h2 className="home-title">Conoce a IATutores</h2>
+        <h2 className="home-title">Conoce a IA Tutores</h2>
         <p className="home-p">
           Somos IA tutores, una empresa dedicada al coaching educativo. Nuestro
           compromiso es brindar un servicio de calidad que potencie el

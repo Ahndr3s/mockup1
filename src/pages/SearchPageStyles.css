@@ -46,6 +46,14 @@
     font-size: large;
 }
 
+.result-container .course-mod {
+    font-size: medium;
+}
+
+.result-container .course-title {
+    font-size: 16px;
+}
+
 .search-res-neg, .search-res-pos {
     margin-top: 3rem;
     margin-bottom: 3rem;

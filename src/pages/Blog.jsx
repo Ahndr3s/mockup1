@@ -1,4 +1,8 @@
+import { ContentList } from '../components/ContentList';
+import { Slider } from '../components/Slider';
 import './BlogStyles.css'
+
+
 
 export const Blog = () => {
   return (
@@ -12,6 +16,7 @@ export const Blog = () => {
           height="800"
         ></iframe>
       </div>
+      {/* <Slider type={2} cards={<ContentList contentType='2'/>}/> */}
     </>
   );
 };

@@ -5,14 +5,21 @@
 
 .serv-list-container {
   display: grid;
-  background-color: #242424;
+}
+
+.serv-list, .spec-serv-container {
+  display: grid;
+  text-align: justify;
+  background: linear-gradient(-135deg, #5760a3 35%, #601875  );
+  border-radius: 20px;
 }
 
 .serv-list {
-  display: grid;  
   padding-left: 9rem;
-  padding-right: 9rem;  
-  text-align: justify;
+  padding-right: 9rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  animation: slideLeft 0.8s ease-out forwards;
 }
 
 .serv{
@@ -20,15 +27,14 @@
 }
 
 .spec-serv-container {
-  display: grid;  
   justify-content: flex-start;
-  text-align: justify;
 }
 
 .spec-serv-container, .serv-subtitle{
   display: grid;
   justify-content: center;  
   font-size: 25px;
+  animation: slideRight 0.8s ease-out forwards;
 }
 
 .spec-serv-list {
@@ -46,6 +52,11 @@
   }
 
   .spec-serv-list{
-    padding-right: 3rem;
+    padding-right: 1rem;
   }
+
+  .spec-serv-container, .serv-subtitle{
+    width: 380px;
+  }
+
 }

@@ -1,13 +1,13 @@
 .slide {
   overflow: hidden;
-  height: max-content;  
+  height: max-content;
 }
 
 .course-card {
   display: flex;
   align-items: center;
   width: 800px;
-  height: 450px;
+  /* height: 470px; */
   border: double 1px transparent;
   background-image: linear-gradient(#601875, #102172),
     linear-gradient(90deg, #650577, #f66c49, #f82f5c);
@@ -18,15 +18,16 @@
 }
 
 .slide .course-card {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
-.course-card .course-title  {
+.course-card .course-title {
   font-size: 18px;
 }
 
-.course-card, .course-card-img {
+.course-card,
+.course-card-img {
   border-radius: 15px;
 }
 
@@ -55,14 +56,15 @@
   color: var(--bg-primary);
   text-align: inherit;
   border-radius: 5px;
-  margin-bottom: 0;  
+  margin-bottom: 0;
 }
 
 .course-title {
-  font-size: 20px;  
+  font-size: 20px;
 }
 
-.course-title, .course-mod {
+.course-title,
+.course-mod {
   margin-left: 1rem;
 }
 
@@ -71,8 +73,13 @@
   justify-content: space-around;
 }
 
-.c-list, .course-data {
+.c-list,
+.course-data {
   font-size: 12px;
+}
+
+.c-resume {
+  font-size: 11px;
 }
 
 .categorie {
@@ -91,32 +98,46 @@
   margin-bottom: 1rem;
 }
 
+.admin-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
 
 /*Responsive courses styles starts*/
 @media only screen and (max-width: 600px) {
-  .grid-banner {
-    display: grid;
-    grid-template-columns: auto;
-    row-gap: 30px;
-    column-gap: 10px;
-    margin-right: 3rem;
-    margin-left: 3rem;
+  .slide {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .slide .course-card {
+    align-items: center;
+    min-width: 280px;
+    margin: 3%;
   }
 
   .course-card {
-    display: grid;
     width: 280px;
+    display: grid;
     min-height: 200px;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   .course-card-img {
-    width: 12rem;
-    height: 5rem;
+    width: 15rem;
+    height: 14rem;
+    margin-bottom: 0%;
   }
 
-  .course-title {    
+  .course-title {
     margin-right: 2rem;
-    font-size: 17px;
+  }
+
+  .course-card .course-title {
+    font-size: 16px;
   }
 
   .c-details {
@@ -128,10 +149,9 @@
     font-size: 13px;
   }
 
-  .c-list{
+  .c-list {
     display: none;
   }
-
 }
 
 /*Responsive courses styles ends*/

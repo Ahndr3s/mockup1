@@ -14,6 +14,7 @@ export const contents = [
         'De manera personal he tenido el honor de contribuir a proyectos que han destacado como el "Premio Municipal de las Buenas Prácticas Educativas" y obteniendo el primer lugar en el concurso de "Ensayo Argumentativo" organizado por la Secretaría de Educación de Guanajuato. Estos logros, lejos de ser el centro de mi carrera, evidencian el trabajo en equipo y el esfuerzo conjunto hacia la excelencia educativa.',
         'Mi dedicación a la educación va más allá de los logros individuales, enfocándome en el desarrollo constante de métodos pedagógicos que promuevan un aprendizaje significativo y pertinente para los alumnos. Estoy en una búsqueda constante de innovación y adaptación de mis estrategias a las demandas actuales de la educación, con el fin de equipar a los estudiantes para enfrentar los retos futuros.',
       ],
+      btntxt:'Conócenos',
     },
     {
       type:'3',
@@ -31,6 +32,7 @@ export const contents = [
           'En mi recorrido profesional, he tenido la fortuna de ser parte del Programa de Promoción Horizontal, donde me posicioné entre los primeros lugares a nivel estatal, una experiencia que me ha enseñado mucho sobre el valor del esfuerzo y la dedicación en nuestra profesión. También he contribuido con mis reflexiones en artículos sobre el impacto de las organizaciones no gubernamentales en la educación, publicados en revistas académicas. Un momento particularmente gratificante para mí fue cuando mi participación en el concurso de "Ensayo Argumentativo 2022", organizado por la Secretaría de Educación de Guanajuato, fue reconocida con el segundo lugar. Este reconocimiento me ha motivado a seguir aprendiendo y compartiendo mis ideas, siempre con el objetivo de enriquecer nuestra práctica educativa.',
           'Siempre he creído que mi enfoque colaborativo es el corazón de mi compromiso no solo con el desarrollo profesional de los educadores, sino también con el progreso de nuestros estudiantes hacia un aprendizaje que sea activo, significativo y capaz de transformar sus vidas. Aspiro a que, juntos, podamos prepararlos para afrontar con confianza los retos del futuro, consciente de que nuestro trabajo tiene un impacto profundo en la sociedad del siglo XXI.',
       ],
+      btntxt:'Conócenos',
     },
     {
       type:'3',
@@ -47,6 +49,7 @@ export const contents = [
           'A lo largo de mi carrera, he tenido el privilegio de recibir reconocimientos que avalan mi compromiso y pasión por la educación, como el "Premio Experiencia Exitosa en la Enseñanza de las Matemáticas" en el IV Concurso Estatal. Además, he liderado proyectos innovadores, entre los que destaca la presentación del proyecto “Cultura Rubik como Práctica Innovadora para Mejorar el Aprendizaje de la Geometría” en el programa RecreaTV en mayo de 2020, una iniciativa que evidencia mi enfoque creativo hacia la enseñanza de conceptos matemáticos complejos.',
           'is habilidades en gestión educativa, liderazgo, desarrollo de proyectos innovadores, organización de eventos, y promoción de prácticas sostenibles, no solo han enriquecido mi práctica docente, sino también me han permitido impactar positivamente en la comunidad educativa. Mi dedicación a la educación se centra en el desarrollo de una comunidad de aprendizaje que valora la innovación, la colaboración y la sostenibilidad, con el objetivo de preparar a nuestros estudiantes para los retos del futuro en un mundo en constante cambio.',
       ],
+      btntxt:'Conócenos',
     },
     { 
       type:'3',     
@@ -62,7 +65,8 @@ export const contents = [
           'Mi carrera ha estado dedicada a la educación, alternando entre roles como docente y asesor. Este camino me ha llevado a profundizar en metodologías que promueven un aprendizaje efectivo y pertinente, siempre con la mira puesta en cómo la educación puede adaptarse a las necesidades cambiantes de nuestros estudiantes.',
           'He participado en una variedad de cursos y diplomados, destacando entre ellos estrategias para la enseñanza efectiva de las matemáticas y la convivencia educativa, lo que me ha permitido desarrollar un enfoque integral en educación. Además, mis certificaciones como Maestro Líder Coach y en herramientas de Microsoft reflejan mi compromiso con la incorporación de la tecnología en el aula.',
           'Mi contribución al ámbito educativo también incluye la publicación de dos artículos en la revista Ciencia Latina, enfocándome en la evaluación educativa, un área que considero clave para el desarrollo y mejora de procesos de aprendizaje. Creo firmemente en el trabajo colaborativo y en la importancia de la actualización continua como herramientas para enfrentar los retos de la educación actual. Me esfuerzo por ser un agente de cambio que, a través de la innovación pedagógica, impacte positivamente en la formación de las nuevas generaciones.',
-      ],            
+      ],
+      btntxt:'Conócenos',            
     },
     {
       type:'2',
@@ -70,7 +74,8 @@ export const contents = [
       btntxt:"Inscribirse",
       Coursedata:['16:00 hrs', 'Sábado 8/03/2024', 'Jaime Sabines'],
       id:'01',
-      info:['Introducción a la Cultura Rubik', 'Benefiios del uso del cubo Rubik', 'Aprendizaje Basado en Proyectos (ABP)', 'Clase Práctica y Demostración del cubo Rubik']
+      info:['Introducción a la Cultura Rubik', 'Benefiios del uso del cubo Rubik', 'Aprendizaje Basado en Proyectos (ABP)', 'Clase Práctica y Demostración del cubo Rubik'],
+      img: 'ia_rubik'
     },
     {
       type:'2',
@@ -78,7 +83,8 @@ export const contents = [
       btntxt:"Inscribirse",
       Coursedata:['15:00 hrs', 'PROXIMAMENTE', '-'],
       id:'02',
-      info:['Diseño Y Argumentacion de Planeación Didáctica (Curso Teórico-práctico)', 'Instrumentos de Evaluación Incluidos']
+      info:['Diseño Y Argumentacion de Planeación Didáctica (Curso Teórico-práctico)', 'Instrumentos de Evaluación Incluidos'],
+      img: 'ia_design'
     },
     {
       type:'2',
@@ -86,7 +92,8 @@ export const contents = [
       btntxt:"Inscribirse",
       Coursedata:['15:00 hrs', 'Viernes 1/03/2024', 'Educación Municipal de León'],
       id:'03',
-      info:['Inducción a Inteligencia Aritficial (1 Hora)', 'Herramientas de IA para la Gestón Educativa (1 Hora)', 'Aplicaciones de IA para los Alumnos (1 Hora)', 'Clase Práctica de Demostración con IA (1 Hora)']
+      info:['Inducción a Inteligencia Aritficial (1 Hora)', 'Herramientas de IA para la Gestón Educativa (1 Hora)', 'Aplicaciones de IA para los Alumnos (1 Hora)', 'Clase Práctica de Demostración con IA (1 Hora)'],
+      img: 'ia_teaching'
     },
     {
       type:'2',
@@ -94,8 +101,40 @@ export const contents = [
       btntxt:"Inscribirse",
       Coursedata:['18:00 hrs', 'Viernes 8/03/2024', 'Zoom'],
       id:'04',
-      resume:'Curso diseñado para capacitar al personal administrativo y docente en eel uso de herramietnas dfe Microsoft',
-      info:['Excel', 'Power Automate', 'Forms', 'Share Point', 'Creacion de Sistema de Inscripciones Escolares Automatizado']
-    }
+      resume:'Curso diseñado para capacitar al personal administrativo y docente en el uso de herramietnas de Microsoft',
+      info:['Excel', 'Power Automate', 'Forms', 'Share Point', 'Creacion de Sistema de Inscripciones Escolares Automatizado'],
+      img: 'ia_inscripciones'
+    },
+    {
+      type:'2',
+      name:"Curso de Herramientas Digitales",
+      btntxt:"Inscribirse",
+      Coursedata:['18:00 hrs', '22/04/2024 - 10/06/2024', 'Zoom'],
+      id:'05',
+      resume:'Curso de 40h para desarrollar estrategias académicas con herramientas digitales. Para mejorar procesos de asesoria, acompañamiento y evaluación en zonas escolares y centros educativos',
+      info:['Excel', 'Power Automate', 'Forms', 'Share Point', 'Creacion de Sistema de Inscripciones Escolares Automatizado'],
+      img: 'ia_banner'
+    },
+    {
+      type:'2',
+      name:"Curso de Inteligencia Artificial para Docentes",
+      btntxt:"Inscribirse",
+      Coursedata:['18:00 hrs', '24/04/2024 - 25/04/2024', 'Zoom'],
+      id:'06',
+      info:['Fundamentos de IA: Partimos desde cero desde los conceptos escenciales.', 'Chat GPT 360: Descubre las funciones, capacidades y limitantes de ChatGPT.', 'Diseño de Planeaciones con prompts Engineering: Planes de clases, proyectos, ruúbricas, resumenes, adecuaciones curriculares'],
+      img: 'ia_docentes'
+    },    
+    {
+      type:'4',
+      name:"Automatización de inscripciones escolares con Microsoft 365",
+      url: 'https://www.youtube.com/watch?v=YO5KIHk7G6w&t=8s',
+      img: 'ia_min1'
+    },
+    {
+      type:'4',
+      name:"Metodología STEAM",
+      url: 'https://www.youtube.com/watch?v=1TURzqEGA2E&t=1s',
+      img: 'ia_min2'
+    },
   ];
   

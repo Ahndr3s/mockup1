@@ -1,43 +1,95 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Modal } from "./Modal";
+import getEnvVariables from "../helpers/getEnvVariables";
 
-
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 export const InstMatrix = () => {
   const [posts, setPosts] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const {VITE_INST_TOKEN} = getEnvVariables()
 
   useEffect(() => {
-    // Función para obtener los datos del feed de Instagram
     const fetchInstagramFeed = async () => {
       try {
-        // Realizar la solicitud a la API de Instagram para obtener el feed
-        const response = await axios.get('https://graph.instagram.com/me/media', {
-          params: {
-            fields: 'id,media_type,media_url,username,timestamp,caption',
-            access_token: 'TU_ACCESS_TOKEN', // Reemplaza 'TU_ACCESS_TOKEN' con tu token de acceso
-          },
-        });
+        const response = await axios.get(
+          "https://graph.instagram.com/me/media",
+          {
+            params: {
+              fields:
+                "id,media_type,media_url,username,timestamp,caption,thumbnail_url,children",
+              access_token:VITE_INST_TOKEN,
+            },
+          }
+        );
 
-        // Actualizar el estado con los datos del feed
-        setPosts(response.data.data);
+        setPosts(response.data.data.slice(0, 12));
       } catch (error) {
-        console.error('Error al obtener el feed de Instagram:', error);
+        console.error("Error al obtener el feed de Instagram:", error);
       }
     };
 
-    // Llamar a la función para obtener el feed cuando el componente se monta
     fetchInstagramFeed();
   }, []);
 
+  const openModal = (post) => {
+    setSelectedPost(post);
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+    setSelectedPost(null);
+  };
+
   return (
-    <div>
-      <h1>Instagram Feed</h1>
-      {posts.map(post => (
-        <div key={post.id}>
-          <img src={post.media_url} alt={post.caption} />
-          <p>{post.caption}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="instMatrix-container">
+        {posts.map((post) => (
+          <div key={post.id} style={{ marginBottom: "20px" }}>
+            {post.media_type === "IMAGE" && (
+              <>
+                <img
+                  src={post.media_url}
+                  className="instPic"
+                  onClick={() => openModal(post)}
+                  alt={post.caption}
+                />
+              </>
+            )}
+            {post.media_type === "VIDEO" && (
+              <>
+                <video className="instVideo" onClick={() => openModal(post)}>
+                  <source src={post.media_url} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </>
+            )}
+            {post.media_type === "CAROUSEL_ALBUM" && (
+              <>
+              {/* {console.log(post.children.data)} */}
+                <img
+                  src={post.media_url}
+                  className="instPic"
+                  alt={post.caption}
+                  onClick={() => openModal(post)}
+                />
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+      {selectedPost && (
+        <Modal
+          modalType={0}
+          openModal={modal}
+          info={selectedPost}
+          closeModal={closeModal}
+        >
+          {selectedPost.username}
+        </Modal>
+      )}
+    </>
   );
 };

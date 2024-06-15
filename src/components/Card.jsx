@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-// import logo from "../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,121 +8,208 @@ import {
   faPenToSquare,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-// import { useContext } from "react";
-// import { AuthContext } from "../context/AuthContext";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { Modal } from "./Modal";
+import { useAuthStore } from "../hooks/useAuthStore";
+import { onSetActiveCourse } from "../store/courseSlice/courseSlice";
+import { useDispatch } from 'react-redux'
 
 export const Card = (props) => {
   let cardOption;
   const navigate = useNavigate();
   const imgUrl = `../../assets/${props.img}.png`;
-  // const { logout } = useContext(AuthContext);
-  // const { user, logged } = useContext(AuthContext);
+  const { logged } = useContext(AuthContext);
+  const [modal, setModal] = useState(false);
+  const [deletingmodal, setdeletingModal] = useState(false);
+  const { status } = useAuthStore();
+  const dispatch = useDispatch();
+  // const [selectedPost, setSelectedPost] = useState(null)
 
+  // COURSE
   const handleClickCourse = () => {
-    // navigate("/coursePage", {
-    //   replace: true,
-    // });
     window.open("https://wa.me/message/W54JEKQVCRT7J1");
   };
 
-  const handleCLickServ = () => {
-    navigate(props.pageRoute, {
-      replace: true,
-    });
-  };
-
-  const handleCLickTeamMember = (id) => {
+  // TEAM MEMBER WINDOW
+  const handleClickTeamMember = (id) => {
     navigate(`/teamMember/${id}`, {
       replace: true,
     });
   };
 
+  // VIDEOBLOG LINK
+  const handleVideoblogClick = (url) => {
+    window.open(url);
+  };
+
+  // SERVICES WINDOW
+  const handleClickServ = () => {
+    navigate(props.pageRoute, {
+      replace: true,
+    });
+  };
+
+  const handleDelete = (post) => {
+    // console.log(post);
+    dispatch(onSetActiveCourse(post));
+    setdeletingModal(true);
+  };
+
+  const openModal = (post) => {
+    // console.log(post);
+    dispatch(onSetActiveCourse(post));
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+    // setSelectedPost(null);
+    dispatch(onSetActiveCourse(null));
+  };
+
+  const closeDelingModal = () => {
+    setdeletingModal(false);
+    // setSelectedPost(null);
+    dispatch(onSetActiveCourse(null));
+  };
+
   switch (props.type) {
     //SERVICE CARD
     case 1:
-      cardOption = 
-        (
-          <div className="serv-card">
-            <img className="serv-card-img" src={imgUrl} />
-            <br />
-            <h2 className="serv-title">{props.title}</h2>
+      cardOption = (
+        <div className="serv-card">
+          <img className="serv-card-img" src={imgUrl} />
+          <br />
+          <h2 className="serv-title">{props.title}</h2>
+          <div className="card-info">
+            <p>{props.resume}</p>
+            <ul>
+              {props.info.map((data) => {
+                return <li key={data}>{data}</li>;
+              })}
+            </ul>
+          </div>
+          <button className="serv-btn" onClick={handleClickServ}>
+            {props.btntxt}
+          </button>
+          {/* <NavLink className="serv-btn" to={`/${props.pageRoute}`}>{props.btntxt}</NavLink> */}
+        </div>
+      );
+      break;
 
-            <div className="card-info">
-              <p>{props.resume}</p>
-              <ul>
+    //COURSE CARD
+    case 2:
+      cardOption = (
+        <div className="course-card">
+          <img className="course-card-img" src={imgUrl} />
+          <div className="card-info">
+            <h5 className="course-mod">{props.modality}</h5>
+            <h3 className="course-title">{props.title}</h3>
+            <div className="course-data">
+              <p className="c-details">
+                <FontAwesomeIcon icon={faClock} /> {props.Coursedata[0]}
+              </p>
+              <p className="c-details">
+                <FontAwesomeIcon icon={faCalendar} /> {props.Coursedata[1]}
+              </p>
+              <p className="c-details">
+                <FontAwesomeIcon icon={faLocationDot} /> {props.Coursedata[2]}
+              </p>
+            </div>
+            <div className="c-info">
+              <p className="c-resume" style={{ display: logged ? "none" : "" }}>
+                {props.resume}
+              </p>
+
+              <ul className="c-list">
                 {props.info.map((data) => {
                   return <li key={data}>{data}</li>;
                 })}
               </ul>
             </div>
-            <button className="serv-btn" onClick={handleCLickServ}>
+            <button className="serv-btn" onClick={handleClickCourse}>
               {props.btntxt}
             </button>
+            {status === "Authenticated" && (
+              <>
+                <div className="admin-btns">
+                  <button onClick={() => openModal({...props, id:props.id, user: props.user})} className="edit-btn">
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </button>
+                  <Modal
+                    modalType={1}
+                    formType={4}
+                    openModal={modal}
+                    info={props}
+                    closeModal={closeModal}
+                    flag={2}
+                  >
+                    Editar {props.title}
+                  </Modal>
+                  <button onClick={() => handleDelete({...props, id:props.id})} className="del-btn">
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                  <Modal
+                    modalType={2}              
+                    openModal={deletingmodal}
+                    info={props}
+                    closeModal={closeDelingModal}                    
+                  >
+                    Eliminar {props.title}
+                  </Modal>
+                </div>
+              </>
+            )}
           </div>
-        );
-      break;
-
-    //COURSE CARD  
-    case 2:
-      cardOption = 
-        (
-          <div className="course-card">
-            <img className="course-card-img" src={imgUrl} />
-            <div className="card-info">
-              <h5 className="course-mod">{props.modality}</h5>
-              <h3 className="course-title">{props.title}</h3>
-              <div className="course-data">
-                <p className="c-details">
-                  <FontAwesomeIcon icon={faClock} /> {props.Coursedata[0]}
-                </p>
-                <p className="c-details">
-                  <FontAwesomeIcon icon={faCalendar} /> {props.Coursedata[1]}
-                </p>
-                <p className="c-details">
-                  <FontAwesomeIcon icon={faLocationDot} /> {props.Coursedata[2]}
-                </p>
-              </div>
-              <div className="c-info">
-                <p className="c-resume">{props.resume}</p>
-
-                <ul className="c-list">
-                  {props.info.map((data) => {
-                    return <li key={data}>{data}</li>;
-                  })}
-                </ul>
-              </div>
-              <button className="serv-btn" onClick={handleClickCourse}>
-                {props.btntxt}
-              </button>
-              <div className="admin-btn">
-                <button className="edit-btn"><FontAwesomeIcon icon={faPenToSquare} /></button>
-                <button className="del-btn"><FontAwesomeIcon icon={faTrash} /></button>
-              </div>
-            </div>
-          </div>
-        );
+        </div>
+      );
       break;
 
     //TEAM CARD
     case 3:
-      cardOption = 
-        (
-          <div className="team-card">
-            <h2 className="team-name">{props.title}</h2>
-            <div className="team-card-body">
-              <img className="team-card-img" src={imgUrl} />
-              <div className="team-data">
-                <p className="p-resume">{props.resume}</p>
-                <button
-                  className="serv-btn"
-                  onClick={() => handleCLickTeamMember(props.id)}
-                >
-                  {props.btntxt}
-                </button>
-              </div>
+      cardOption = (
+        <div className="team-card">
+          <h2 className="team-name">{props.title}</h2>
+          <div className="team-card-body">
+            <img className="team-card-img" src={imgUrl} />
+            <div className="team-data">
+              <p className="p-resume">{props.resume}</p>
+              <button
+                className="serv-btn"
+                onClick={() => handleClickTeamMember(props.id)}
+              >
+                {props.btntxt}
+              </button>
             </div>
           </div>
-        );
+        </div>
+      );
+      break;
+
+    //VIDEOBLOG BANNER CARD
+    case 4:
+      cardOption = (
+        <div
+          className="videoblog-banner-card"
+          style={{ backgroundImage: `url(${imgUrl})` }}
+          onClick={() => handleVideoblogClick(props.url)}
+        >
+          <br />
+          <h2 className="serv-title">{props.title}</h2>
+        </div>
+      );
+      break;
+
+    //INST ALBUM CARD
+    case 5:
+      cardOption = (
+        <div
+          className="inst-album-card"
+          style={{ backgroundImage: `url(${imgUrl})` }}          
+        >          
+        </div>
+      );
       break;
 
     default:
@@ -154,6 +240,7 @@ Card.propTypes = {
   btntxt: PropTypes.string,
   resume: PropTypes.any,
   Coursedata: PropTypes.array,
-  // no: PropTypes.number,
   pageRoute: PropTypes.string,
+  url: PropTypes.string,
+  user: PropTypes.any,
 };

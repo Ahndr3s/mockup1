@@ -11,7 +11,7 @@ export const SearchBar = () => {
   const { q = "" } = queryString.parse(location.search);
   const contents = getContentByName(q);
   const { searchText, onInputChange } = useForm({
-    searchText: q,
+    searchText: q
   });
   const ShowSearch = q.length === 0;
   const ShowError = q.length > 0 && contents.length === 0;
@@ -58,7 +58,8 @@ export const SearchBar = () => {
                 key={content.id}
                 title={content.name}              
                 Coursedata={content.Coursedata}
-                btntxt={"Inscribirse"}
+                img={content.img}
+                btntxt={content.btntxt}
               />
             )
           } else {

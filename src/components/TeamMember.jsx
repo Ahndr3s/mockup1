@@ -3,12 +3,16 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "../pages/TeamMemberStyles.css";
 import { Navigate, useParams } from "react-router-dom";
 import { getConsultorById } from "../helpers/getConsultorById";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+
 
 
 export const TeamMember = () => {
   const {id} = useParams()
   const consultor = useMemo(() => getConsultorById(id), [id])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   if (!consultor) return <Navigate to={'/home'}/>
   

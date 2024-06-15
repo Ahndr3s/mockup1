@@ -1,0 +1,69 @@
+import PropTypes from "prop-types";
+import { Card } from "./Card";
+import { getContentsByType } from "../helpers/getContents";
+
+export const ContentList = (props) => {
+  const contents = getContentsByType(props.contentType, props.limit);
+  let cardList = [];
+  let combinedProps;
+
+  contents.forEach((content) => {
+    // Definir las props específicas para '2', '3', y '4'
+    let additionalProps = {};
+
+    if (props.contentType === "2") {
+      additionalProps = {
+        // Define las props específicas para contentType '2'
+        info: content.info,
+        Coursedata: content.Coursedata,
+        resume: content.resume,
+        // Más props específicas para '2'
+      };
+    } else if (props.contentType === "3") {
+      additionalProps = {
+        // Define las props específicas para contentType '3'
+        resume: content.info,
+        // Más props específicas para '3'
+      };
+    } else if (props.contentType === "4") {
+      additionalProps = {
+        // Define las props específicas para contentType '4'
+        url: content.url,
+        // Más props específicas para '4'
+      };
+    }
+
+    if (props.contentType !== 5) {
+      // Combina las props generales con las props específicas
+      combinedProps = {
+        id: content.id,
+        type: Number(props.contentType),
+        title: content.name,
+        img: content.img,
+        btntxt: content.btntxt,
+        ...additionalProps,
+      };
+    } else {
+      combinedProps = props.childrenImgs
+    }
+
+    // Agrega el componente Card a la lista
+    cardList.push(<Card key={content.id} {...combinedProps} />);
+  });
+
+  // Si listType es '1', devuelve el array de componentes Card
+  if (props.listType === "1") {
+    // console.log(cardList)
+    return cardList;
+  }
+
+  // En cualquier otro caso, renderiza los componentes Card directamente
+  return <>{cardList}</>;
+};
+
+ContentList.propTypes = {
+  contentType: PropTypes.string,
+  limit: PropTypes.number,
+  listType: PropTypes.string,
+  childrenImgs: PropTypes.array
+};

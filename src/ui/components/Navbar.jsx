@@ -1,14 +1,16 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import logo from "../../../assets/logo.png";
 import "./NavbarStyles.css";
 import { AuthContext } from "../../context/AuthContext";
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 export const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
-  const { logout } = useContext(AuthContext);
+  // const { logout } = useContext(AuthContext);
+  const { status, checkAuthToken, startLogout, user } = useAuthStore();
 
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar);
@@ -17,14 +19,17 @@ export const Navbar = () => {
   const handleShowSearch = () => {
     navigate("/SearchPage", {
       replace: true,
-    });    
+    });
   };
 
-  const { user, logged } = useContext(AuthContext);
+  useEffect(() => {
+    checkAuthToken;
+  }, []);
+
   const navigate = useNavigate();
 
   const onLogout = () => {
-    logout();
+    startLogout();
     navigate("login", {
       replace: true,
     });
@@ -44,11 +49,6 @@ export const Navbar = () => {
         </li>
         <div className={`nav-elements ${showNavbar && "active"}`}>
           <ul>
-            <li className="nav-item" onClick={handleShowNavbar}>
-              <NavLink className={"nav-link"} to={"/courses"}>
-                <span className="link-text">Cursos</span>
-              </NavLink>
-            </li>
             <li className="nav-item hidden-item" onClick={handleShowNavbar}>
               <NavLink className={"nav-link"} to={"/blog"}>
                 <span className="link-text">Blog</span>
@@ -59,9 +59,14 @@ export const Navbar = () => {
                 <span className="link-text">Nosotros</span>
               </NavLink>
             </li>
-            {logged && (
+            <li className="nav-item" onClick={handleShowNavbar}>
+              <NavLink className={"nav-link"} to={"/contact"}>
+                <span className="link-text">Contacto</span>
+              </NavLink>
+            </li>
+            {status === "Authenticated" && (
               <>
-                <li className="nav-item" onClick={handleShowNavbar}>
+                {/* <li className="nav-item" onClick={handleShowNavbar}>
                   <NavLink className={"nav-link"} to={"/profile"}>
                     <span className="link-text">Perfil</span>
                   </NavLink>
@@ -70,17 +75,17 @@ export const Navbar = () => {
                   <NavLink className={"nav-link"} to={"/myCourses"}>
                     <span className="link-text">Mis Cursos</span>
                   </NavLink>
+                </li> */}
+                <li className="nav-item" onClick={handleShowNavbar}>
+                  <NavLink className={"nav-link"} to={"/courses"}>
+                    <span className="link-text">Cursos</span>
+                  </NavLink>
                 </li>
                 <li className="nav-item userName">
-                  <span className="link-text">{user?.email}</span>
+                  <span className="link-text">{user.name}</span>
                 </li>
               </>
             )}
-            <li className="nav-item" onClick={handleShowNavbar}>
-              <NavLink className={"nav-link"} to={"/contact"}>
-                <span className="link-text">Contacto</span>
-              </NavLink>
-            </li>
             <li className="nav-item" onClick={onLogout}>
               <NavLink className={"nav-link"} to={"/login"}>
                 <span className="link-text">Cerrar Sesión</span>

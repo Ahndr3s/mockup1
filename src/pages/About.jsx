@@ -1,5 +1,5 @@
 import "./AboutStyles.css";
-import { ConsultorsList } from "../components/ConsultorsList";
+import { ContentList } from "../components/ContentList";
 
 export const About = () => {
   return (
@@ -40,7 +40,7 @@ export const About = () => {
           Estamos encantados de presentar al equipo de profesionales dedicados a
           redefinir su experiencia en educacion
         </p>
-        <ConsultorsList />
+        <ContentList contentType='3' listType='1'/>        
         
       </div>
     </>

@@ -92,6 +92,11 @@
     margin-left: 40px;
   }
 
+  .team-name {
+    font-size: 36px;
+    margin-bottom: 1rem;
+  }
+
   .txt-team {
     margin-bottom: 0;
     text-align: justify;

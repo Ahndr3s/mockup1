@@ -18,7 +18,7 @@
   margin-bottom: 0%;
 }
 
-.team-name, .team-title {
+.team-titles .team-name, .team-titles {
   margin-right: 6rem;
 }
 
@@ -33,7 +33,7 @@
   position: absolute;
   z-index: 900;
   top: 100px;
-  width: 35%;
+  width: 35rem;
 }
 
 .info-container {
@@ -61,8 +61,9 @@
     margin-bottom: 15vh;
   }
 
-  .team-titles h1 {
-    margin-right: unset;
+  
+  .team-titles .team-name, .team-titles {
+    margin-right: unset;    
   }
 
   .info-container {
@@ -80,12 +81,11 @@
     width: 60%;
     height: 30vh;
   }
-
-  .team-member-info {
-    
+  
+  .team-member-info {    
     min-width: unset;
     margin-left: 3rem;
     margin-right: 3rem;
-    margin-top: 17vh;
+    margin-top: 20vh;
   }
 }

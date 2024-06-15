@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import "./ContactStyles.css";
+import { InstMatrix } from "../components/InstMatrix";
 export const Contact = () => {
   const instagramUrl = "https://www.instagram.com/iatutores/";
   const facebookUrl = "https://www.facebook.com/iatutores?mibextid=ZbWKwL";
@@ -15,7 +16,7 @@ export const Contact = () => {
   return (
     <>
       <h1 className="page-title">Contáctanos</h1>
-      <div className="contact-form-container">
+      {/* <div className="contact-form-container">
         <p className="p-contact">
           ¿Tienes preguntas o necesitas información sobre nuestros cursos y
           talleres? Estamos aquí para ayudarte, rellena el siguiente formulario.
@@ -26,7 +27,9 @@ export const Contact = () => {
           <b>¡Esperamos tus comentarios y consultas!</b>
         </p>
         <SimpleForm type={3} />
-      </div>
+      </div> */}
+      <InstMatrix/>
+      
 
       <div className="socials-container">
         <h2 className="socials-subtitle">Únete a la comunidad</h2>
