@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { forwardRef, useEffect } from "react";
+import PropTypes from "prop-types";
 import "./ServPageStyle.css";
 
-export const ServPage = () => {
+
+export const ServPage = forwardRef((props, ref) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   
   return (
     <>
-      <div className="serv-title">
+      <div className="serv-title" ref={ref}>
         <h1 className="titles">Consultoría en Gestión Escolar</h1>
       </div>
 
@@ -20,20 +22,6 @@ export const ServPage = () => {
           Nuestro enfoque se centra en optimizar la gestión escolar para mejorar
           los resultados académicos y promover un entorno de aprendizaje
           efectivo.
-        </p>
-        <p className="home-p">
-          Además de la implementación de tecnología avanzada, nuestro equipo de
-          consultores en gestión escolar está compuesto por expertos en
-          educación con una amplia experiencia en el campo. Trabajamos codo a
-          codo con directivos y docentes para diseñar e implementar estrategias
-          pedagógicas que fomenten el desarrollo integral de los estudiantes.
-        </p>
-        <p className="home-p">
-          En última instancia, nuestro objetivo es impulsar la excelencia
-          educativa y contribuir al éxito a largo plazo de las instituciones
-          escolares. Creemos en la importancia de combinar la tecnología con la
-          experiencia humana para crear soluciones efectivas y sostenibles en el
-          ámbito educativo
         </p>
       </div>
 
@@ -95,4 +83,10 @@ export const ServPage = () => {
       </div>
     </>
   );
+});
+
+ServPage.displayName = "ServPage";
+
+ServPage.propTypes = {
+  ref: PropTypes.string,
 };

@@ -1,15 +1,13 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../../../assets/logo.png";
 import "./NavbarStyles.css";
-import { AuthContext } from "../../context/AuthContext";
 import { useAuthStore } from "../../hooks/useAuthStore";
 
 export const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(false);
-  // const { logout } = useContext(AuthContext);
   const { status, checkAuthToken, startLogout, user } = useAuthStore();
 
   const handleShowNavbar = () => {
@@ -49,6 +47,11 @@ export const Navbar = () => {
         </li>
         <div className={`nav-elements ${showNavbar && "active"}`}>
           <ul>
+            <li className="nav-item" onClick={handleShowNavbar}>
+              <NavLink className={"nav-link"} to={"/courses"}>
+                <span className="link-text">Cursos</span>
+              </NavLink>
+            </li>
             <li className="nav-item hidden-item" onClick={handleShowNavbar}>
               <NavLink className={"nav-link"} to={"/blog"}>
                 <span className="link-text">Blog</span>
@@ -76,11 +79,6 @@ export const Navbar = () => {
                     <span className="link-text">Mis Cursos</span>
                   </NavLink>
                 </li> */}
-                <li className="nav-item" onClick={handleShowNavbar}>
-                  <NavLink className={"nav-link"} to={"/courses"}>
-                    <span className="link-text">Cursos</span>
-                  </NavLink>
-                </li>
                 <li className="nav-item userName">
                   <span className="link-text">{user.name}</span>
                 </li>

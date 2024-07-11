@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import "./ResourceDesignStyles.css";
+import PropTypes from "prop-types";
 
-export const ResourceDesign = () => {
+
+export const ResourceDesign = forwardRef((props, ref) => {
   const lobe1 = `../../assets/lobe1.png`;
   const lobe2 = `../../assets/lobe2.png`;
   const lobe3 = `../../assets/lobe3.png`;
@@ -30,7 +32,7 @@ export const ResourceDesign = () => {
 
   return (
     <>
-      <div className="serv-title">
+      <div className="serv-title" ref={ref}>
         <h1 className="titles">Diseño de Recursos Educativos</h1>
       </div>
 
@@ -105,4 +107,9 @@ export const ResourceDesign = () => {
       </div>
     </>
   );
+});
+
+ResourceDesign.displayName = "ResourceDesign";
+ResourceDesign.propTypes = {
+  ref: PropTypes.string,
 };

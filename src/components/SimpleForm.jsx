@@ -1,11 +1,11 @@
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { useForm } from "../hooks/useForm";
 import { useAuthStore } from "../hooks/useAuthStore";
 import { useCourseStore } from "../hooks/useCourseStore";
-
+import { useVideoStore } from "../hooks/useVideoStore";
 
 // FORM FIELDS DEFINITION
 const loginFormFields = {
@@ -26,6 +26,7 @@ const modalCourseFields = (info) => ({
   courseData: info?.Coursedata?.join(", ") || "",
   courseRes: info?.resume || "",
   courseInfo: info?.info?.join(", ") || "",
+  courseImage: info?.img || "",
 });
 
 const modalVideoFields = {
@@ -38,11 +39,15 @@ export const SimpleForm = (props) => {
   const navigate = useNavigate();
   const { startLogin, startSignIn, errorMessage } = useAuthStore();
   const { startSavingCourse } = useCourseStore();
-  
-  const initialCourseFields = modalCourseFields(props.info);
+  const { startSavingVideo } = useVideoStore();
 
-  // const [formSubmited, setformSubmited] = useState(false)
- 
+  const initialCourseFields = modalCourseFields(props.info);
+  const [images, setimages] = useState(null);
+
+  const handleImageChange = (e) => {
+    setimages(e.target.files[0]);
+  };
+
   // GET FORM FILDS VALUES
   const {
     loginEmail,
@@ -64,6 +69,7 @@ export const SimpleForm = (props) => {
     courseData,
     courseInfo,
     courseRes,
+    courseImage,
     onInputChange: onModalCourseInputChange,
     setFormState,
   } = useForm(initialCourseFields);
@@ -73,7 +79,6 @@ export const SimpleForm = (props) => {
     videoUrl,
     onInputChange: onModalVideoInputChange,
   } = useForm(modalVideoFields);
-
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -106,30 +111,76 @@ export const SimpleForm = (props) => {
   const handleModalCourseSubmit = (e) => {
     e.preventDefault();
     let modaldata = {
-      type: '2',
+      type: "2",
       name: courseName,
-      btntxt: 'Inscribirse',
-      Coursedata: courseData.split(", "),        
+      btntxt: "Inscribirse",
+      Coursedata: courseData.split(", "),
       // courseMod: courseMod,
       resume: courseRes,
       info: courseInfo.split(", "),
       user: {
-        name: 'Annie Tivadar',
-        uuid: '123',
-    }
-    }
-      
-      if (props.info && props.info.id) {
-        modaldata.id = props.info.id;
-        // console.log(props.info.id)
-      }
+        name: "Annie Tivadar",
+        uuid: "123",
+      },
+      // img: courseImage
+      img: images
+    };
 
-      startSavingCourse(modaldata)
-      props.close()
+    if (props.info && props.info.id) {
+      modaldata.id = props.info.id;
+      // console.log(props.info.id)
+    }
+    // console.log(modaldata) 
+  
+    startSavingCourse(modaldata);
+    props.close();
   };
+
+  /*const handleModalCourseSubmit = (e) => {
+    e.preventDefault();
+
+    let formData = new FormData();
+    formData.append("type", "2");
+    formData.append("name", courseName);
+    formData.append("btntxt", "Inscribirse");
+    formData.append("Coursedata", courseData.split(", "));
+    formData.append("resume", courseRes);
+    formData.append("info", courseInfo.split(", "));
+    formData.append("user[name]", "Annie Tivadar");
+    formData.append("user[uuid]", "123");
+
+    // if (images) {
+    //   formData.append("img", images);
+    // }
+
+    if (props.info && props.info.id) {
+      formData.append("id", props.info.id);
+    }
+
+    startSavingCourse(formData);
+    props.close();
+  };*/
 
   const handleModalVideoSubmit = (e) => {
     e.preventDefault();
+
+    let formDataV = new FormData();
+    formDataV.append("type", "4");
+    formDataV.append("name", videoName);
+    formDataV.append("url", videoUrl);
+    formDataV.append("user[name]", "Annie Tivadar");
+    formDataV.append("user[uuid]", "123");
+
+    if (images) {
+      formDataV.append("img", images);
+    }
+
+    if (props.info && props.info.id) {
+      formDataV.append("id", props.info.id);
+    }
+
+    startSavingVideo(formDataV);
+    props.close();
   };
 
   useEffect(() => {
@@ -262,7 +313,6 @@ export const SimpleForm = (props) => {
             placeholder="Nombre"
             autoComplete="off"
             value={courseName}
-            // value={props.info.title}
             onChange={onModalCourseInputChange}
           />
           {/* <div className="select-container">
@@ -299,10 +349,21 @@ export const SimpleForm = (props) => {
             value={courseRes}
             onChange={onModalCourseInputChange}
           ></textarea>
+
+          <label htmlFor={courseImage}>Elige una imagen:</label>
+          <input
+            type="file"
+            id="courseImage"
+            name="courseImage"
+            accept="image/*"
+            // onChange={onModalCourseInputChange}
+            onChange={handleImageChange}
+          />
+
           <div className="btn-container">
-            <input type="submit" className='serv-btn' value="Guardar" />            
+            <input type="submit" className="serv-btn" value="Guardar" />
           </div>
-        </form>        
+        </form>
       );
       break;
 
@@ -328,6 +389,9 @@ export const SimpleForm = (props) => {
             value={videoUrl}
             onChange={onModalVideoInputChange}
           />
+          <div className="btn-container">
+            <input type="submit" className="serv-btn" value="Guardar" />
+          </div>
         </form>
       );
       break;
@@ -344,5 +408,5 @@ SimpleForm.propTypes = {
   setloggedIn: PropTypes.any,
   close: PropTypes.any,
   info: PropTypes.any,
-  flag: PropTypes.number
+  flag: PropTypes.number,
 };

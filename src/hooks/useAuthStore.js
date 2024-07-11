@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import iatApi from "../api/IATApi";
+import iatApi from "../api/iatApi";
 import { clearErrorMessage, onChecking, onLogin, onLogout } from "../store/auth/authSlice";
 
 

@@ -88,8 +88,7 @@ export const Modal = ({ modalType, formType, openModal, info, closeModal, childr
       )}
       {modalType === 2 && (
         <div className="confirmDel">
-          <button className="serv-btn" onClick={handleDelete} >Aceptar</button>
-          
+          <button className="serv-btn" onClick={handleDelete} >Aceptar</button>          
         </div>
       )}
     </dialog>

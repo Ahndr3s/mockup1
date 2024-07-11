@@ -50,8 +50,7 @@ export const Slider = ({ type, cards }) => {
           icon={faCircleChevronLeft}
           onClick={onPreviousClick}
         />
-        <div ref={sliderRef} key={index} className="slide">
-          {/* {cards} */}
+        <div ref={sliderRef} key={index} className="slide">        
           {cards.map((card, index) => (
               <Card
                 id={card.id}

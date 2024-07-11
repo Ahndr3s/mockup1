@@ -8,14 +8,15 @@ import {
   faPenToSquare,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
+import { forwardRef, useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Modal } from "./Modal";
 import { useAuthStore } from "../hooks/useAuthStore";
 import { onSetActiveCourse } from "../store/courseSlice/courseSlice";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 
-export const Card = (props) => {
+
+export const Card = forwardRef((props, ref) => {
   let cardOption;
   const navigate = useNavigate();
   const imgUrl = `../../assets/${props.img}.png`;
@@ -24,7 +25,6 @@ export const Card = (props) => {
   const [deletingmodal, setdeletingModal] = useState(false);
   const { status } = useAuthStore();
   const dispatch = useDispatch();
-  // const [selectedPost, setSelectedPost] = useState(null)
 
   // COURSE
   const handleClickCourse = () => {
@@ -45,32 +45,38 @@ export const Card = (props) => {
 
   // SERVICES WINDOW
   const handleClickServ = () => {
-    navigate(props.pageRoute, {
-      replace: true,
-    });
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(props.pageRoute, {
+        replace: true,
+      });
+    }
   };
 
+  // DELETE COURSE
   const handleDelete = (post) => {
     // console.log(post);
     dispatch(onSetActiveCourse(post));
     setdeletingModal(true);
   };
 
+  // OPEN EDITION MODAL
   const openModal = (post) => {
     // console.log(post);
     dispatch(onSetActiveCourse(post));
     setModal(true);
   };
 
+  // CLOSE EDITION MODAL
   const closeModal = () => {
     setModal(false);
-    // setSelectedPost(null);
     dispatch(onSetActiveCourse(null));
   };
 
-  const closeDelingModal = () => {
+  // OPEN EDITION MODAL
+  const closeDeletingModal = () => {
     setdeletingModal(false);
-    // setSelectedPost(null);
     dispatch(onSetActiveCourse(null));
   };
 
@@ -90,19 +96,26 @@ export const Card = (props) => {
               })}
             </ul>
           </div>
-          <button className="serv-btn" onClick={handleClickServ}>
+          {/* <button className="serv-btn" onClick={handleClickServ}>
+            {props.btntxt}
+          </button> */}
+          <button
+            className="serv-btn"
+            onClick={ handleClickServ}
+            // onClick={() => alert(props.ref)}
+          >
             {props.btntxt}
           </button>
-          {/* <NavLink className="serv-btn" to={`/${props.pageRoute}`}>{props.btntxt}</NavLink> */}
         </div>
       );
       break;
 
     //COURSE CARD
     case 2:
+      // console.log(imgUrl)
       cardOption = (
         <div className="course-card">
-          <img className="course-card-img" src={imgUrl} />
+          <img className="course-card-img" src={props.img} />
           <div className="card-info">
             <h5 className="course-mod">{props.modality}</h5>
             <h3 className="course-title">{props.title}</h3>
@@ -134,7 +147,12 @@ export const Card = (props) => {
             {status === "Authenticated" && (
               <>
                 <div className="admin-btns">
-                  <button onClick={() => openModal({...props, id:props.id, user: props.user})} className="edit-btn">
+                  <button
+                    onClick={() =>
+                      openModal({ ...props, id: props.id, user: props.user })
+                    }
+                    className="edit-btn"
+                  >
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
                   <Modal
@@ -147,14 +165,17 @@ export const Card = (props) => {
                   >
                     Editar {props.title}
                   </Modal>
-                  <button onClick={() => handleDelete({...props, id:props.id})} className="del-btn">
+                  <button
+                    onClick={() => handleDelete({ ...props, id: props.id })}
+                    className="del-btn"
+                  >
                     <FontAwesomeIcon icon={faTrash} />
                   </button>
                   <Modal
-                    modalType={2}              
+                    modalType={2}
                     openModal={deletingmodal}
                     info={props}
-                    closeModal={closeDelingModal}                    
+                    closeModal={closeDeletingModal}
                   >
                     Eliminar {props.title}
                   </Modal>
@@ -206,9 +227,8 @@ export const Card = (props) => {
       cardOption = (
         <div
           className="inst-album-card"
-          style={{ backgroundImage: `url(${imgUrl})` }}          
-        >          
-        </div>
+          style={{ backgroundImage: `url(${imgUrl})` }}
+        ></div>
       );
       break;
 
@@ -218,7 +238,10 @@ export const Card = (props) => {
   }
 
   return <>{cardOption}</>;
-};
+});
+
+
+Card.displayName = "Card";
 
 Card.defaultProps = {
   title: "Guest",
@@ -242,5 +265,6 @@ Card.propTypes = {
   Coursedata: PropTypes.array,
   pageRoute: PropTypes.string,
   url: PropTypes.string,
+  ref: PropTypes.any,
   user: PropTypes.any,
 };

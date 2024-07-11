@@ -28,7 +28,7 @@ export const Courses = () => {
     startLoadingCourses();
   }, [startLoadingCourses]);
 
-  console.log(courses);
+  // console.log(courses);
   return (
     <>
       <h1 className="page-title">Cursos y Talleres</h1>
