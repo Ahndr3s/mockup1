@@ -8,6 +8,7 @@ import {
 } from "../store/courseSlice/courseSlice";
 import iatApi from "../api/iatApi";
 import Swal from "sweetalert2";
+// import cloudinary from "../cloudinary/cloudinary";
 
 
 export const useCourseStore = () => {
@@ -24,12 +25,12 @@ export const useCourseStore = () => {
       if (course.id) {
         console.log("Update course");
         console.log(course.img)
-        // await iatApi.put(`/api/uploads/courses/${course.id}`, course.img);
         await iatApi.put(`/api/courses/${course.id}`, course);
         dispatch(onUpdateCourse(course));
         return;
       }
       console.log("Create course");
+      console.log(course)
       const { data } = await iatApi.post('/api/courses', course);
       dispatch(onAddNewCourse({ ...course, id: data.event.id, user }));
     } catch (error) {
@@ -37,26 +38,6 @@ export const useCourseStore = () => {
       Swal.fire('Error at saving', error.response.data.msg, 'error');
     }
   };
-
-  /*const startSavingCourse = async (formData) => {
-    try {
-        if (formData.has("id")) {
-            console.log("Update course");
-            // console.log(formData.get("files"))      
-            // await iatApi.put(`/api/uploads/courses/${formData.get("id")}`, formData.get('img'));
-            await iatApi.put(`/api/courses/${formData.get("id")}`, formData);
-            dispatch(onUpdateCourse(formData));
-            return;
-        }
-        console.log("Create course");
-        const { data } = await iatApi.post('/api/courses', formData);
-        dispatch(onAddNewCourse({ ...formData, id: data.event.id, user }));
-    } catch (error) {
-        console.log(error);
-        Swal.fire('Error at saving', error.response.data.msg, 'error');
-    }
-};*/
-
 
   const startDeletingCourse = async() => {
     try {      

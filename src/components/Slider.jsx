@@ -117,7 +117,7 @@ export const Slider = ({ type, cards }) => {
         `}</style>
       </div>
     );
-  } //INST IMAGE SLIDER
+  } //INSTAGRAM IMAGE SLIDER
   else if (type === 3) {
     sliderOption = (
       <div className="slider-container">

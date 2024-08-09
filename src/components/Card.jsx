@@ -74,7 +74,7 @@ export const Card = forwardRef((props, ref) => {
     dispatch(onSetActiveCourse(null));
   };
 
-  // OPEN EDITION MODAL
+  // CLOSE EDITION MODAL
   const closeDeletingModal = () => {
     setdeletingModal(false);
     dispatch(onSetActiveCourse(null));
@@ -222,7 +222,7 @@ export const Card = forwardRef((props, ref) => {
       );
       break;
 
-    //INST ALBUM CARD
+    //INSTAGRAM ALBUM CARD
     case 5:
       cardOption = (
         <div

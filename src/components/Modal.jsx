@@ -28,7 +28,6 @@ export const Modal = ({ modalType, formType, openModal, info, closeModal, childr
   }
 
   return (
-    // <dialog className="course-dialog" ref={ref} onCancel={closeModal}>
     <dialog className="course-dialog" ref={ref} >
       <div className="dialog-header">
         <div className="header-inst-icon">

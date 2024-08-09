@@ -6,12 +6,14 @@ import { NewsBanner } from "../components/NewsBanner";
 import { Modal } from "../components/Modal";
 import "./CoursesStyles.css";
 import { useCourseStore } from "../hooks/useCourseStore";
+import { useVideoStore } from "../hooks/useVideoStore";
 
 export const Courses = () => {
   const [courseModal, setcourseModal] = useState(false);
   const [videoModal, setvideoModal] = useState(false);
   const { status } = useAuthStore();
   const { courses, startLoadingCourses } = useCourseStore();
+  const { videos, startLoadingVideos } = useVideoStore();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,6 +29,10 @@ export const Courses = () => {
   useEffect(() => {
     startLoadingCourses();
   }, [startLoadingCourses]);
+
+  useEffect(() => {
+    startLoadingVideos();
+  }, [startLoadingVideos]);
 
   // console.log(courses);
   return (
@@ -81,7 +87,7 @@ export const Courses = () => {
         <h4>Recomendaciones para tí</h4>
         <hr />
         {/* <Slider type={1} cards={<ContentList contentType='2'/>} />*/}
-        <Slider type={1} cards={courses} />
+        <Slider type={2} cards={videos} />
       </div>
     </>
   );

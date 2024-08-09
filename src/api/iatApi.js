@@ -4,7 +4,8 @@ import  getEnvVariables  from '../helpers/getEnvVariables';
 
 const {VITE_API_URL} = getEnvVariables()
 const iatApi = axios.create({
-    baseURL: VITE_API_URL
+    baseURL: VITE_API_URL,
+    // localURL: VITE_API_URL
 })
 
 // ToDO: CONFIGURE REQUESTS INTERCEPTORS

@@ -264,6 +264,14 @@ textarea {
   display: flex;
   justify-content: center;
 }
+
+.course-dialog {
+  z-index: 1000; /* El z-index original del modal */
+}
+
+.modal-lowered-z-index {
+  z-index: 500 !important; /* Este valor debe ser menor que el z-index del widget de Cloudinary */
+}
 /*----------------Course Dialog styles ends----------------*/
 
 /*----------------instPost Dialog styles starts----------------*/
@@ -292,6 +300,7 @@ textarea {
   padding-top: 3hv;
 }
 /*----------------Footer styles ends----------------*/
+
 
 /*----------------Responsive styles starts----------------*/
 @media only screen and (max-width: 600px) {

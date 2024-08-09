@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
@@ -6,6 +6,7 @@ import { useForm } from "../hooks/useForm";
 import { useAuthStore } from "../hooks/useAuthStore";
 import { useCourseStore } from "../hooks/useCourseStore";
 import { useVideoStore } from "../hooks/useVideoStore";
+import getEnvVariables from "../helpers/getEnvVariables";
 
 // FORM FIELDS DEFINITION
 const loginFormFields = {
@@ -29,10 +30,11 @@ const modalCourseFields = (info) => ({
   courseImage: info?.img || "",
 });
 
-const modalVideoFields = {
+const modalVideoFields = (info) => ({
   videoName: "",
   videoUrl: "",
-};
+  videoImage: info?.img || "",
+});
 
 export const SimpleForm = (props) => {
   let formOption;
@@ -42,10 +44,33 @@ export const SimpleForm = (props) => {
   const { startSavingVideo } = useVideoStore();
 
   const initialCourseFields = modalCourseFields(props.info);
-  const [images, setimages] = useState(null);
+  //---------------------------------------
+  const { UPLOADPRESET, CLOUDNAME } = getEnvVariables();
+  //---------------------------------------
 
-  const handleImageChange = (e) => {
-    setimages(e.target.files[0]);
+  const handleImageChange = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "fz466asa");
+
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dfpbzr7n0/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const file = await response.json();
+      // setImage(file.secure_url)
+      setFormState((prevState) => ({
+        ...prevState,
+        courseImage: file.secure_url,
+      }));
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
   };
 
   // GET FORM FILDS VALUES
@@ -77,6 +102,7 @@ export const SimpleForm = (props) => {
   const {
     videoName,
     videoUrl,
+    videoImage,
     onInputChange: onModalVideoInputChange,
   } = useForm(modalVideoFields);
 
@@ -108,60 +134,57 @@ export const SimpleForm = (props) => {
     });
   };
 
-  const handleModalCourseSubmit = (e) => {
+  const handleModalCourseSubmit = async (e) => {
     e.preventDefault();
+
     let modaldata = {
       type: "2",
       name: courseName,
       btntxt: "Inscribirse",
       Coursedata: courseData.split(", "),
-      // courseMod: courseMod,
       resume: courseRes,
       info: courseInfo.split(", "),
       user: {
         name: "Annie Tivadar",
         uuid: "123",
       },
-      // img: courseImage
-      img: images
+      img: courseImage,
+    };
+
+    console.log(modaldata);
+    if (props.info && props.info.id) {
+      modaldata.id = props.info.id;
+    }
+
+    startSavingCourse(modaldata);
+    props.close();
+  };
+
+  const handleModalVideoSubmit = (e) => {
+    e.preventDefault();
+    let modaldata = {
+      type: "4",
+      name: videoName,
+      url: videoUrl,
+      user: {
+        name: "Annie Tivadar",
+        uuid: "123",
+      },
+      img: videoImage,
     };
 
     if (props.info && props.info.id) {
       modaldata.id = props.info.id;
       // console.log(props.info.id)
     }
-    // console.log(modaldata) 
-  
-    startSavingCourse(modaldata);
+    // console.log(modaldata)
+
+    startSavingVideo(modaldata);
+    // startSavingVideo(formData);
     props.close();
   };
 
-  /*const handleModalCourseSubmit = (e) => {
-    e.preventDefault();
-
-    let formData = new FormData();
-    formData.append("type", "2");
-    formData.append("name", courseName);
-    formData.append("btntxt", "Inscribirse");
-    formData.append("Coursedata", courseData.split(", "));
-    formData.append("resume", courseRes);
-    formData.append("info", courseInfo.split(", "));
-    formData.append("user[name]", "Annie Tivadar");
-    formData.append("user[uuid]", "123");
-
-    // if (images) {
-    //   formData.append("img", images);
-    // }
-
-    if (props.info && props.info.id) {
-      formData.append("id", props.info.id);
-    }
-
-    startSavingCourse(formData);
-    props.close();
-  };*/
-
-  const handleModalVideoSubmit = (e) => {
+  /*const handleModalVideoSubmit = (e) => {
     e.preventDefault();
 
     let formDataV = new FormData();
@@ -181,7 +204,7 @@ export const SimpleForm = (props) => {
 
     startSavingVideo(formDataV);
     props.close();
-  };
+  };*/
 
   useEffect(() => {
     if (errorMessage !== undefined) {
@@ -356,10 +379,13 @@ export const SimpleForm = (props) => {
             id="courseImage"
             name="courseImage"
             accept="image/*"
-            // onChange={onModalCourseInputChange}
             onChange={handleImageChange}
           />
-
+          <img
+            style={{ height: "250px", width: "250px" }}
+            src={courseImage}
+            alt=""
+          />
           <div className="btn-container">
             <input type="submit" className="serv-btn" value="Guardar" />
           </div>
@@ -388,6 +414,19 @@ export const SimpleForm = (props) => {
             autoComplete="off"
             value={videoUrl}
             onChange={onModalVideoInputChange}
+          />
+          <label htmlFor={courseImage}>Elige una imagen:</label>
+          <input
+            type="file"
+            id="courseImage"
+            name="courseImage"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          <img
+            style={{ height: "250px", width: "250px" }}
+            src={courseImage}
+            alt=""
           />
           <div className="btn-container">
             <input type="submit" className="serv-btn" value="Guardar" />

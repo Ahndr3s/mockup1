@@ -19,26 +19,27 @@ export const useVideoStore = () => {
     dispatch(onSetActiveVideo(video))
   }
 
-  /*const startSavingVideo = async (video) => {
+  const startSavingVideo = async (video) => {
     try {
       if (video.id) {
         console.log("Update video");
         console.log(video.img)
-        await iatApi.put(`/api/uploads/videos/${video.id}`, video.img);
-        // await iatApi.put(`/api/videos/${video.id}`, video);
-        // dispatch(onUpdateVideo(video));
+        // await iatApi.put(`/api/uploads/videos/${video.id}`, video.img);
+        await iatApi.put(`/api/videos/${video.id}`, video);
+        dispatch(onUpdateVideo(video));
         return;
       }
       console.log("Create video");
+      // console.log(video)
       const { data } = await iatApi.post('/api/videos', video);
       dispatch(onAddNewVideo({ ...video, id: data.event.id, user }));
     } catch (error) {
       console.log(error);
       Swal.fire('Error at saving', error.response.data.msg, 'error');
     }
-  };*/
+  };
 
-  const startSavingVideo = async (formData) => {
+  /*const startSavingVideo = async (formData) => {
     try {
         if (formData.has("id")) {
             console.log("Update video");
@@ -55,7 +56,7 @@ export const useVideoStore = () => {
         console.log(error);
         Swal.fire('Error at saving', error.response.data.msg, 'error');
     }
-};
+};*/
 
 
   const startDeletingVideo = async() => {

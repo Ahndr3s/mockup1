@@ -11,25 +11,22 @@ export const ContentList = (props) => {
     // Definir las props específicas para '2', '3', y '4'
     let additionalProps = {};
 
-    if (props.contentType === "2") {
-      additionalProps = {
-        // Define las props específicas para contentType '2'
+    if (props.contentType === "2") { //COURSES 
+      additionalProps = {        
         info: content.info,
         Coursedata: content.Coursedata,
         resume: content.resume,
-        // Más props específicas para '2'
+        // Más props específicas para COURSES
       };
-    } else if (props.contentType === "3") {
-      additionalProps = {
-        // Define las props específicas para contentType '3'
+    } else if (props.contentType === "3") { //TEAM MEMBERS
+      additionalProps = {      
         resume: content.info,
-        // Más props específicas para '3'
+        // Más props específicas para TEAM MEMBERS
       };
-    } else if (props.contentType === "4") {
+    } else if (props.contentType === "4") { //VIDEOS
       additionalProps = {
-        // Define las props específicas para contentType '4'
         url: content.url,
-        // Más props específicas para '4'
+        // Más props específicas para VIDEOS
       };
     }
 
