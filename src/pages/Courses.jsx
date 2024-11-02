@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../hooks/useAuthStore";
 import { Slider } from "../components/Slider";
-// import { ContentList } from "../components/ContentList";
 import { NewsBanner } from "../components/NewsBanner";
 import { Modal } from "../components/Modal";
 import "./CoursesStyles.css";
@@ -51,6 +50,7 @@ export const Courses = () => {
               <Modal
                 modalType={1}
                 formType={4}
+                formAction={0}
                 openModal={courseModal}
                 closeModal={() => setcourseModal(false)}
               >
@@ -62,6 +62,7 @@ export const Courses = () => {
               <Modal
                 modalType={1}
                 formType={5}
+                formAction={0}
                 openModal={videoModal}
                 closeModal={() => setvideoModal(false)}
               >
@@ -78,17 +79,17 @@ export const Courses = () => {
         <Slider type={1} cards={courses} />
       </div>
       <div className="categorie">
-        <h4>Mejores Reseñas</h4>
+        <h4>Más Videos</h4>
         <hr />
         {/* <Slider type={1} cards={<ContentList contentType='2'/>} /> */}
-        <Slider type={1} cards={courses} />
+        <Slider type={1} cards={videos} />
       </div>
-      <div className="categorie">
+      {/* <div className="categorie">
         <h4>Recomendaciones para tí</h4>
         <hr />
         {/* <Slider type={1} cards={<ContentList contentType='2'/>} />*/}
-        <Slider type={2} cards={videos} />
-      </div>
+        {/* <Slider type={2} cards={videos} /> */}
+      {/* </div> */}
     </>
   );
 };

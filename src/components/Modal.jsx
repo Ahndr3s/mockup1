@@ -6,14 +6,24 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { SimpleForm } from "./SimpleForm";
 import { useSelector } from "react-redux";
 import { useCourseStore } from "../hooks/useCourseStore";
+import { useVideoStore } from "../hooks/useVideoStore";
 
-
-
-export const Modal = ({ modalType, formType, openModal, info, closeModal, children }) => {
+export const Modal = ({
+  modalType,
+  formType,
+  formAction,
+  openModal,
+  info,
+  closeModal,
+  children,
+}) => {
   const ref = useRef();
   const activeCourse = useSelector((state) => state.course.activeCourse);
+  const activeVideo = useSelector((state) => state.video.activeVideo);
   const instagramUrl = "https://www.instagram.com/iatutores/";
   const { startDeletingCourse } = useCourseStore();
+  const { startDeletingVideo } = useVideoStore();
+  let modalOption;
 
   useEffect(() => {
     if (openModal) {
@@ -23,33 +33,18 @@ export const Modal = ({ modalType, formType, openModal, info, closeModal, childr
     }
   }, [openModal]);
 
-  const handleDelete = () => {
-    startDeletingCourse()
-  }
+  const handleDelete = (type) => {
+    console.log(info)
+    if (type === 2) {
+      startDeletingCourse(); 
+    } else if(type === 4) {
+      startDeletingVideo();
+    }
+  };
 
-  return (
-    <dialog className="course-dialog" ref={ref} >
-      <div className="dialog-header">
-        <div className="header-inst-icon">
-          <h3>{children}</h3>
-          {!modalType && (
-            <a              
-              href={instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon icon={faInstagram} size="2x" />
-            </a>
-          )}
-        </div>
-        <FontAwesomeIcon
-          icon={faXmark}
-          size="2x"
-          onClick={closeModal}
-          style={{ color: `#fff` }}
-        />
-      </div>
-      {modalType === 0 && (
+  switch (modalType) {
+    case 0:
+      modalOption = (
         <div className="instPost">
           {info.media_type === "IMAGE" && (
             <>
@@ -81,15 +76,66 @@ export const Modal = ({ modalType, formType, openModal, info, closeModal, childr
             </>
           )}
         </div>
-      )}
-      {modalType === 1 && (
-        <SimpleForm type={formType} info={activeCourse} close={closeModal} />
-      )}
-      {modalType === 2 && (
-        <div className="confirmDel">
-          <button className="serv-btn" onClick={handleDelete} >Aceptar</button>          
+      );
+      break;
+
+      case 1:
+        // modalOption = (
+        //   <SimpleForm
+        //   type={formType}
+        //   info={
+        //     formType === 4 ? activeCourse : formType === 5 ? activeVideo : null
+        //   }
+        //   close={closeModal}
+        // />
+        // )
+        modalOption = formAction === 1 ? (
+          <SimpleForm
+            type={formType}
+            info={
+              formType === 4 ? activeCourse : formType === 5 ? activeVideo : null
+            }
+            close={closeModal}
+          />
+        ) : (
+          <SimpleForm
+            type={formType}
+            info={null}
+            close={closeModal}
+          />
+        );
+        break;
+    
+      case 2:
+        modalOption = (
+          <div className="confirmDel">
+          <button className="serv-btn" onClick={() => handleDelete(info.type)}>
+            Aceptar
+          </button>
         </div>
-      )}
+        )
+        break;
+  }
+
+  return (
+    <dialog className="course-dialog" ref={ref}>
+      <div className="dialog-header">
+        <div className="header-inst-icon">
+          <h3>{children}</h3>
+          {!modalType && (
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
+            </a>
+          )}
+        </div>
+        <FontAwesomeIcon
+          icon={faXmark}
+          size="2x"
+          onClick={closeModal}
+          style={{ color: `#fff` }}
+        />
+      </div>
+      {modalOption}
     </dialog>
   );
 };
@@ -97,6 +143,7 @@ export const Modal = ({ modalType, formType, openModal, info, closeModal, childr
 Modal.propTypes = {
   modalType: PropTypes.number,
   formType: PropTypes.number,
+  formAction: PropTypes.number,
   openModal: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   children: PropTypes.node,

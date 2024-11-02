@@ -1,0 +1,56 @@
+.course-wrapper {
+    position:relative;
+}
+
+.course-header {
+    display: flex;
+    min-height: 60vh;
+    justify-content: end;
+} 
+
+.course-info {
+    display: grid;
+    align-items: left;
+    padding-top: 350px;
+    background-color: black;
+    opacity: 0.35;
+}
+
+.course-info .page-title, .c-info, .course-data {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.course-data .c-details {
+    /* padding: 1rem; */
+    font-size: 11px;
+}
+
+.course-info .c-details {
+    padding: 1rem;
+    font-size: large;
+}
+
+.course-info .c-info{
+    padding-right: 900px;
+}
+
+.course-info .c-resume{
+    font-size: x-large;
+}
+
+
+/*----------------Responsive styles starts----------------*/
+@media only screen and (max-width: 600px) {
+    .course-info .c-info{
+        padding-right: 200px;
+    }
+
+    .course-info .c-resume{
+        font-size: large;
+    }
+
+    .course-info .c-info{
+        padding-right: 45px;
+    }
+}

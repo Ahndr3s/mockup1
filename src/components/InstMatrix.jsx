@@ -17,9 +17,8 @@ export const InstMatrix = () => {
           "https://graph.instagram.com/me/media",
           {
             params: {
-              fields:
-                "id,media_type,media_url,username,timestamp,caption,thumbnail_url,children",
-              access_token:VITE_INST_TOKEN,
+              fields: "id,media_type,media_url",
+              access_token: VITE_INST_TOKEN,
             },
           }
         );

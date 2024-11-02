@@ -4,12 +4,14 @@ import "../pages/TeamMemberStyles.css";
 import { Navigate, useParams } from "react-router-dom";
 import { getConsultorById } from "../helpers/getConsultorById";
 import { useEffect, useMemo } from "react";
-
+import { consultors } from "../../assets/data/consultors";
 
 
 export const TeamMember = () => {
   const {id} = useParams()
-  const consultor = useMemo(() => getConsultorById(id), [id])
+  const { type } = location.state || {};
+  const consultor = useMemo(() => getConsultorById(type, consultors, id), [type, id])
+  // console.log(consultor)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,6 +23,7 @@ export const TeamMember = () => {
       <div className="wrapper">
         <div className="page-header">
           <div className="team-titles">
+            <h1 className="team-name"></h1>
             <h1 className="team-name">{consultor.name}</h1>
             <h5>
               <FontAwesomeIcon icon={faEnvelope} /> {consultor.email}

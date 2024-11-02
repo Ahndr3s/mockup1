@@ -40,7 +40,7 @@ export const About = () => {
           Estamos encantados de presentar al equipo de profesionales dedicados a
           redefinir su experiencia en educacion
         </p>
-        <ContentList contentType='3' listType='1'/>        
+        <ContentList contentType='3'/>        
         
       </div>
     </>

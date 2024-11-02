@@ -3,18 +3,25 @@ import { useForm } from "../hooks/useForm";
 import { Card } from "./Card";
 import queryString from "query-string";
 import { getContentByName } from "../helpers/getContentByName";
+import { useVideoStore } from "../hooks/useVideoStore";
+import { useCourseStore } from "../hooks/useCourseStore";
+import { contents } from "../../assets/data/content";
 
 export const SearchBar = () => {
+  const { videos } = useVideoStore();
+  const { courses } = useCourseStore();
+  const data = contents.concat(courses.concat(videos))
+  // console.log(data)
   let cardOption;
   const navigate = useNavigate();
   const location = useLocation();
   const { q = "" } = queryString.parse(location.search);
-  const contents = getContentByName(q);
+  const searches = getContentByName(q, data);
   const { searchText, onInputChange } = useForm({
     searchText: q
   });
   const ShowSearch = q.length === 0;
-  const ShowError = q.length > 0 && contents.length === 0;
+  const ShowError = q.length > 0 && searches.length === 0;
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +55,7 @@ export const SearchBar = () => {
         >
           Contenido No Encontrado
         </div>
-        {contents.map((content) => {
+        {searches.map((content) => {
           if(content.type === '2') {
             cardOption = (
               <Card
@@ -60,6 +67,7 @@ export const SearchBar = () => {
                 Coursedata={content.Coursedata}
                 img={content.img}
                 btntxt={content.btntxt}
+                resume={content.resume}
               />
             )
           } else {
@@ -71,7 +79,7 @@ export const SearchBar = () => {
                 key={content.id}
                 title={content.name}
                 img={content.img}
-                resume={content.info}
+                resume={content.resume}
                 btntxt={"Cónocenos"}
               />
             )

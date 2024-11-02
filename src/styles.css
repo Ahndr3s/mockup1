@@ -182,10 +182,11 @@ textarea {
 }
 
 .headlights {
-  display: grid;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.videoblog-banner-card {
+.headlights .videoblog-banner-card {
   height: 260px;
   width: 790px;
   margin-left: 1rem;
@@ -410,14 +411,14 @@ textarea {
     height: unset;
   }
 
-  .headlights {
-    display: flex;
-    justify-content: space-evenly;
-  }
-
   .videoblog-banner-card {
     width: 170px;
     height: 100px;
+  }
+
+  .categorie .videoblog-banner-card {
+    width: 280px;
+    height: 400px;
   }
 
   .videoblog-banner-card .serv-title {

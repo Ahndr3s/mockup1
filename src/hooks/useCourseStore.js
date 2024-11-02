@@ -8,7 +8,6 @@ import {
 } from "../store/courseSlice/courseSlice";
 import iatApi from "../api/iatApi";
 import Swal from "sweetalert2";
-// import cloudinary from "../cloudinary/cloudinary";
 
 
 export const useCourseStore = () => {
@@ -23,14 +22,14 @@ export const useCourseStore = () => {
   const startSavingCourse = async (course) => {
     try {
       if (course.id) {
-        console.log("Update course");
-        console.log(course.img)
+        // console.log("Update course");
+        // console.log(course.img)
         await iatApi.put(`/api/courses/${course.id}`, course);
         dispatch(onUpdateCourse(course));
         return;
       }
-      console.log("Create course");
-      console.log(course)
+      // console.log("Create course");
+      // console.log(course)
       const { data } = await iatApi.post('/api/courses', course);
       dispatch(onAddNewCourse({ ...course, id: data.event.id, user }));
     } catch (error) {

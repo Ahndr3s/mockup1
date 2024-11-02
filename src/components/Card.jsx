@@ -8,25 +8,24 @@ import {
   faPenToSquare,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import { forwardRef, useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { forwardRef, useState } from "react";
 import { Modal } from "./Modal";
 import { useAuthStore } from "../hooks/useAuthStore";
 import { onSetActiveCourse } from "../store/courseSlice/courseSlice";
+import { onSetActiveVideo } from "../store/videoSlice/videoSlice";
 import { useDispatch } from "react-redux";
-
 
 export const Card = forwardRef((props, ref) => {
   let cardOption;
   const navigate = useNavigate();
   const imgUrl = `../../assets/${props.img}.png`;
-  const { logged } = useContext(AuthContext);
   const [modal, setModal] = useState(false);
+  const [videoModal, setvideoModal] = useState(false);
   const [deletingmodal, setdeletingModal] = useState(false);
   const { status } = useAuthStore();
   const dispatch = useDispatch();
 
-  // COURSE
+  // COURSE INSCIPTION
   const handleClickCourse = () => {
     window.open("https://wa.me/message/W54JEKQVCRT7J1");
   };
@@ -35,6 +34,16 @@ export const Card = forwardRef((props, ref) => {
   const handleClickTeamMember = (id) => {
     navigate(`/teamMember/${id}`, {
       replace: true,
+      state: {type: props.type}
+    });
+  };
+
+  // COURSE WINDOW
+  const handleClickCourseDetails = (props) => {
+    dispatch(onSetActiveCourse(props));
+    navigate(`/coursePage/${props.id}`, {
+      replace: true,
+      state: {type: props.type}
     });
   };
 
@@ -54,30 +63,51 @@ export const Card = forwardRef((props, ref) => {
     }
   };
 
-  // DELETE COURSE
+  // OPEN DELETE COURSE MODEL
   const handleDelete = (post) => {
     // console.log(post);
-    dispatch(onSetActiveCourse(post));
+    if (post.type === 2) {
+      console.log("delete course");
+      dispatch(onSetActiveCourse(post));
+    } else if (post.type === 4) {
+      console.log("delete video");
+      dispatch(onSetActiveVideo(post));
+    }
     setdeletingModal(true);
   };
 
-  // OPEN EDITION MODAL
+  // OPEN EDITION COURSE MODAL
   const openModal = (post) => {
-    // console.log(post);
-    dispatch(onSetActiveCourse(post));
-    setModal(true);
+    if (post.type === 2) {
+      dispatch(onSetActiveCourse(post));
+      // console.dir(post);
+      setModal(true);
+    } else if (post.type === 4) {
+      dispatch(onSetActiveVideo(post));
+      // console.dir(post);
+      setvideoModal(true);
+    }
   };
 
-  // CLOSE EDITION MODAL
-  const closeModal = () => {
-    setModal(false);
-    dispatch(onSetActiveCourse(null));
+  // CLOSE EDITION COURSE MODAL
+  const closeModal = (option) => {
+    if (option === 2) {
+      setModal(false);
+      dispatch(onSetActiveCourse(null));
+    } else if (option === 4) {
+      setvideoModal(false);
+      dispatch(onSetActiveVideo(null));
+    }
   };
 
-  // CLOSE EDITION MODAL
-  const closeDeletingModal = () => {
+  // CLOSE DELETE COURSE MODAL
+  const closeDeletingModal = (option) => {
     setdeletingModal(false);
-    dispatch(onSetActiveCourse(null));
+    if (option === 2) {
+      dispatch(onSetActiveCourse(null));
+    } else if (option === 4) {
+      dispatch(onSetActiveVideo(null));
+    }
   };
 
   switch (props.type) {
@@ -96,14 +126,7 @@ export const Card = forwardRef((props, ref) => {
               })}
             </ul>
           </div>
-          {/* <button className="serv-btn" onClick={handleClickServ}>
-            {props.btntxt}
-          </button> */}
-          <button
-            className="serv-btn"
-            onClick={ handleClickServ}
-            // onClick={() => alert(props.ref)}
-          >
+          <button className="serv-btn" onClick={handleClickServ}>
             {props.btntxt}
           </button>
         </div>
@@ -131,9 +154,6 @@ export const Card = forwardRef((props, ref) => {
               </p>
             </div>
             <div className="c-info">
-              <p className="c-resume" style={{ display: logged ? "none" : "" }}>
-                {props.resume}
-              </p>
 
               <ul className="c-list">
                 {props.info.map((data) => {
@@ -144,11 +164,18 @@ export const Card = forwardRef((props, ref) => {
             <button className="serv-btn" onClick={handleClickCourse}>
               {props.btntxt}
             </button>
+            <button
+              className="serv-btn"
+              onClick={() => handleClickCourseDetails({ ...props, id: props.id, user: props.user })}
+            >
+              Ver Más
+            </button>
             {status === "Authenticated" && (
               <>
                 <div className="admin-btns">
                   <button
                     onClick={() =>
+                      // console.log(props)
                       openModal({ ...props, id: props.id, user: props.user })
                     }
                     className="edit-btn"
@@ -158,10 +185,10 @@ export const Card = forwardRef((props, ref) => {
                   <Modal
                     modalType={1}
                     formType={4}
+                    formAction={1}
                     openModal={modal}
                     info={props}
-                    closeModal={closeModal}
-                    flag={2}
+                    closeModal={() => closeModal(2)}
                   >
                     Editar {props.title}
                   </Modal>
@@ -175,7 +202,7 @@ export const Card = forwardRef((props, ref) => {
                     modalType={2}
                     openModal={deletingmodal}
                     info={props}
-                    closeModal={closeDeletingModal}
+                    closeModal={() => closeDeletingModal(2)}
                   >
                     Eliminar {props.title}
                   </Modal>
@@ -213,11 +240,52 @@ export const Card = forwardRef((props, ref) => {
       cardOption = (
         <div
           className="videoblog-banner-card"
-          style={{ backgroundImage: `url(${imgUrl})` }}
-          onClick={() => handleVideoblogClick(props.url)}
+          style={{ backgroundImage: `url(${props.img})` }}
+          {...(status !== "Authenticated" && {
+            onClick: () => handleVideoblogClick(props.url),
+          })}
         >
           <br />
           <h2 className="serv-title">{props.title}</h2>
+          {status === "Authenticated" && (
+            <>
+              <div className="admin-btns">
+                <button
+                  onClick={() =>
+                    // console.log(props)
+                    openModal({ ...props, id: props.id, user: props.user })
+                  }
+                  className="edit-btn"
+                >
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                </button>
+                <Modal
+                  modalType={1}
+                  formType={5}
+                  formAction={1}
+                  info={props}
+                  openModal={videoModal}
+                  closeModal={() => closeModal(4)}
+                >
+                  Editar {props.title}
+                </Modal>
+                <button
+                  onClick={() => handleDelete({ ...props, id: props.id })}
+                  className="del-btn"
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+                <Modal
+                  modalType={2}
+                  info={props}
+                  openModal={deletingmodal}
+                  closeModal={() => closeDeletingModal(4)}
+                >
+                  Eliminar {props.title}
+                </Modal>
+              </div>
+            </>
+          )}
         </div>
       );
       break;
@@ -239,7 +307,6 @@ export const Card = forwardRef((props, ref) => {
 
   return <>{cardOption}</>;
 });
-
 
 Card.displayName = "Card";
 

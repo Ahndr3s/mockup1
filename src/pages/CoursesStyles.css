@@ -20,6 +20,7 @@
 .slide .course-card {
   margin-left: 3px;
   margin-right: 3px;
+  /* height: 480px; */
 }
 
 .course-card .course-title {
@@ -78,6 +79,11 @@
   font-size: 12px;
 }
 
+.course-data .c-details {
+  padding-left: 1rem;
+  padding-right: 1rem;
+} 
+
 .c-resume {
   font-size: 11px;
 }
@@ -98,6 +104,18 @@
   margin-bottom: 1rem;
 }
 
+.categorie .slide {
+  overflow: hidden;
+}
+
+.slide .videoblog-banner-card {
+  min-width: 600px;
+  height: 260px;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 15px;
+}
+
 .admin-btns {
   display: flex;
   justify-content: space-evenly;
@@ -116,6 +134,15 @@
     align-items: center;
     min-width: 280px;
     margin: 3%;
+  }
+
+  .slide .videoblog-banner-card {
+    min-width: 268px;
+    height: 260px;
+    margin-bottom: 1rem;
+    border-radius: 15px;
+    margin-left: 2rem;
+    align-self: center;
   }
 
   .course-card {

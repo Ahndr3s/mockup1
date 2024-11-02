@@ -7,13 +7,17 @@ import {
   faCircleChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { Card } from "./Card";
+// import { ContentList } from "./ContentList";
+// import { useVideoStore } from "../hooks/useVideoStore";
 
-export const Slider = ({ type, cards }) => {
+
+export const Slider = ({ type, cards, limit }) => {
   const [card, setCard] = useState(0);
   const sliderRef = useRef(null);
   let index;
   let sliderOption;
   const [currentSlide, setCurrentSlide] = useState(0);
+  // const { videos } = useVideoStore();
 
   // Configurar un temporizador que cambia la diapositiva cada 2 segundos
   useEffect(() => {
@@ -41,6 +45,12 @@ export const Slider = ({ type, cards }) => {
     sliderRef.current.scrollLeft += sliderRef.current.offsetWidth;
   };
 
+    // Si se proporciona un límite, devuelve los últimos 'limit' registros
+    if (limit !== undefined) {
+      cards = cards.slice(-limit);
+    }
+  // console.log(cards)
+
   // NORMAL SLIDER
   if (type === 1) {
     sliderOption = (
@@ -62,9 +72,10 @@ export const Slider = ({ type, cards }) => {
                 info={card.info}
                 img={card.img}
                 user={card.user}
-
+                resume={card.resume}
               />
           ))}
+          {/* <ContentList contents={cards} contentType={'4'} listType={'1'} /> */}
         </div>
         <FontAwesomeIcon
           className="slider-btn"
@@ -83,7 +94,7 @@ export const Slider = ({ type, cards }) => {
               key={`Sidet2${index}`}
               className={`slideT2 ${index === currentSlide ? "active" : ""}`}
             >
-              <Card
+               <Card
                 id={card.id}
                 key={`t2${index}`}
                 type={Number(card.type)}
@@ -93,6 +104,8 @@ export const Slider = ({ type, cards }) => {
                 info={card.info}
                 img={card.img}
                 user={card.user}
+                url={card.url}
+                resume={card.resume}
               />
             </div>
           ))}
@@ -144,4 +157,5 @@ export const Slider = ({ type, cards }) => {
 Slider.propTypes = {
   cards: PropTypes.any,
   type: PropTypes.number,
+  limit: PropTypes.number
 };

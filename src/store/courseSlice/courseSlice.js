@@ -33,6 +33,7 @@ export const courseSlice = createSlice({
       }
     },
     onLoadCourses: (state, {payload = []}) => {
+      // state.activeCourse = null;
       state.isLoadingCourses = false
       payload.forEach(course => {
         const exists = state.courses.some(dbCourse => dbCourse.id === course.id)

@@ -3,7 +3,7 @@ import { Card } from "./Card";
 import { getContentsByType } from "../helpers/getContents";
 
 export const ContentList = (props) => {
-  const contents = getContentsByType(props.contentType, props.limit);
+  const contents = getContentsByType(props.contents, props.contentType, props.limit);
   let cardList = [];
   let combinedProps;
 
@@ -20,7 +20,11 @@ export const ContentList = (props) => {
       };
     } else if (props.contentType === "3") { //TEAM MEMBERS
       additionalProps = {      
-        resume: content.info,
+        resume: content.resume,
+        btntxt: content.btntxt,
+        email: content.email,
+        role: contents.role,
+        info: content.info
         // Más props específicas para TEAM MEMBERS
       };
     } else if (props.contentType === "4") { //VIDEOS
@@ -37,7 +41,6 @@ export const ContentList = (props) => {
         type: Number(props.contentType),
         title: content.name,
         img: content.img,
-        btntxt: content.btntxt,
         ...additionalProps,
       };
     } else {
@@ -45,7 +48,8 @@ export const ContentList = (props) => {
     }
 
     // Agrega el componente Card a la lista
-    cardList.push(<Card key={content.id} {...combinedProps} />);
+    cardList.push(<Card {...combinedProps} key={content.id} />);
+
   });
 
   // Si listType es '1', devuelve el array de componentes Card
@@ -59,6 +63,7 @@ export const ContentList = (props) => {
 };
 
 ContentList.propTypes = {
+  contents: PropTypes.any,
   contentType: PropTypes.string,
   limit: PropTypes.number,
   listType: PropTypes.string,

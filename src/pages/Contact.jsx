@@ -1,4 +1,3 @@
-import { SimpleForm } from "../components/SimpleForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,
@@ -16,20 +15,7 @@ export const Contact = () => {
   return (
     <>
       <h1 className="page-title">Contáctanos</h1>
-      {/* <div className="contact-form-container">
-        <p className="p-contact">
-          ¿Tienes preguntas o necesitas información sobre nuestros cursos y
-          talleres? Estamos aquí para ayudarte, rellena el siguiente formulario.
-          Nos comprometemos a responder pronto y brindarte el soporte que
-          necesitas para avanzar en tu camino educativo.
-        </p>
-        <p className="p-contact">
-          <b>¡Esperamos tus comentarios y consultas!</b>
-        </p>
-        <SimpleForm type={3} />
-      </div> */}
       <InstMatrix/>
-      
 
       <div className="socials-container">
         <h2 className="socials-subtitle">Únete a la comunidad</h2>

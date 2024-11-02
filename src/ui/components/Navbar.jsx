@@ -73,20 +73,20 @@ export const Navbar = () => {
                   <NavLink className={"nav-link"} to={"/profile"}>
                     <span className="link-text">Perfil</span>
                   </NavLink>
-                </li> */}
+                </li> 
                 <li className="nav-item" onClick={handleShowNavbar}>
                   <NavLink className={"nav-link"} to={"/myCourses"}>
                     <span className="link-text">Mis Cursos</span>
                   </NavLink>
-                </li>
+                </li>*/}
                 <li className="nav-item userName">
                   <span className="link-text">{user.name}</span>
                 </li>
               </>
             )}
             <li className="nav-item" onClick={onLogout}>
-              <NavLink className={"nav-link"} to={"/login"}>
-                <span className="link-text">Cerrar Sesión</span>
+              <NavLink className={"nav-link"} to={"/login"}>              
+                <span className="link-text">{status === "Authenticated" ? "Cerrar Sesión" : "Iniciar Sesión"}</span>
               </NavLink>
             </li>
           </ul>
