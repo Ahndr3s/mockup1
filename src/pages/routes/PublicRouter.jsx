@@ -9,7 +9,7 @@ import { CoursePage } from "../CoursePage";
 import { ServPage } from "../ServPage";
 import { ResourceDesign } from "../ResourceDesign";
 import { TeamMember } from "../../components/TeamMember";
-import { SearchPage } from "../SearchPAge";
+import { SearchPage } from "../SearchPage";
 import { Contact } from "../Contact";
 
 export const PublicRouter = () => {
