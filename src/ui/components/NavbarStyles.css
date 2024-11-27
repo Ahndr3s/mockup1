@@ -5,6 +5,7 @@
     background-color: var(--bg-primary);
     height: 8vh;
     transition: width 600ms ease;
+    align-items: center;
   }
   
   .navbar-nav {
