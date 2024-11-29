@@ -5,13 +5,9 @@
     background-color: var(--bg-primary);
     height: 8vh;
     transition: width 600ms ease;
-<<<<<<< HEAD
     min-width: fit-content;
     align-items: center;
     justify-content: center;
-=======
-    align-items: center;
->>>>>>> a034bf41e597efb163a053c0bc6887520bf8e065
   }
   
   .navbar-nav {
