@@ -5,6 +5,9 @@ import { ServPage } from "./ServPage";
 import "./HomeStyles.css";
 import "./ResourceDesignStyles.css";
 import "./ServPageStyle.css";
+import iat_consultores from '../../assets/iat_consultores.png';
+import iat_recursos from '../../assets/iat_recursos.png';
+import iat_cursos from '../../assets/iat_cursos.png';
 
 export const Home = () => {
   
@@ -54,6 +57,7 @@ export const Home = () => {
           btntxt={`Ver Más`}
           pageRoute={'/servPage'}
           ref={targetRef1}
+          img={iat_consultores}
           />
         <Card
           type={1}
@@ -63,14 +67,16 @@ export const Home = () => {
           btntxt={`Ver Más`}
           pageRoute={'/resDes'}
           ref={targetRef2}
+          img={iat_recursos}
         />
         <Card
           type={1}
           title="Talleres y Cursos: de Aprendizaje a tu Medida"
-          resume="En IA Tutores, transformamos la educación con una oferta diversa de talleres y cursos diseñados para satisfacer tus necesidades específicas. Ya sea online o presenciales, cada sesión es una aventura hacia el conocimiento:"
+          resume="En IA Tutores ofrecemos talleres y cursos, online y presenciales, diseñados para adaptarse a tus necesidades y convertir cada sesión en una experiencia enriquecedora hacia el conocimiento:"
           info={['Uso de IA en la docencia','Asesorías de Acompañamiento para la Promoción Horizontal','Robótica Inicial y Avanzada']}
           btntxt={`Ver Más`}
           pageRoute={'/courses'}
+          img={iat_cursos}
         />
       </div>
       <ServPage ref={targetRef1}/>

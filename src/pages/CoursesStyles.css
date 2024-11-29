@@ -114,6 +114,9 @@
   margin-left: 2rem;
   margin-bottom: 1rem;
   border-radius: 15px;
+  background-size: cover; /* Escala la imagen para que quepa completa */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center; /* Centra la imagen dentro del div */
 }
 
 .admin-btns {

@@ -5,6 +5,9 @@
     background-color: var(--bg-primary);
     height: 8vh;
     transition: width 600ms ease;
+    min-width: fit-content;
+    align-items: center;
+    justify-content: center;
   }
   
   .navbar-nav {
@@ -71,9 +74,9 @@
     filter: grayscale(0%) opacity(1);
   }
   
-  .logo {
+  /* .logo {
     margin-top: auto;
-  }
+  } */
   
   .logo-img {
     height: 50px;

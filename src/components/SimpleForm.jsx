@@ -63,24 +63,26 @@ export const SimpleForm = (props) => {
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "fz466asa");
-  
+
     try {
       // Si hay una imagen actual, elimínala llamando al backend
       if (currentImage) {
         // Obtener el public_id de la URL de la imagen
-        const publicId = currentImage.split('/').pop().split('.')[0]; 
+        const publicId = currentImage.split("/").pop().split(".")[0];
 
-        const collection = props.type === 4 ? 'courses' : 'videos' 
-        const deleteResponse = await iatApi.delete(`/api/uploads/${collection}/${publicId}`);
-  
+        const collection = props.type === 4 ? "courses" : "videos";
+        const deleteResponse = await iatApi.delete(
+          `/api/uploads/${collection}/${publicId}`
+        );
+
         // Axios devuelve un código de estado para comprobar si la respuesta es exitosa
         if (deleteResponse.status !== 200) {
           throw new Error("Error deleting the current image");
         }
       }
-  
+
       // Subir la nueva imagen
-      if(ContentOwner === user.uuid) {
+      if (ContentOwner === user.uuid) {
         const response = await fetch(
           `https://api.cloudinary.com/v1_1/dfpbzr7n0/image/upload`,
           {
@@ -89,18 +91,17 @@ export const SimpleForm = (props) => {
           }
         );
         const file = await response.json();
-    
+
         setFormState((prevState) => ({
           ...prevState,
           [type === "course" ? "courseImage" : "videoImage"]: file.secure_url,
         }));
       }
-      
     } catch (error) {
       console.error("Error uploading image", error);
     }
   };
-  
+
   // GET FORM FILDS VALUES
   const {
     loginEmail,
@@ -155,7 +156,7 @@ export const SimpleForm = (props) => {
       resume: formState.courseRes,
       info: formState.courseInfo.split(", "),
       user: {
-        name: "Annie Tivadar",
+        name: "Alberto Moreno",
         uuid: "123",
       },
       img: formState.courseImage,
@@ -177,7 +178,7 @@ export const SimpleForm = (props) => {
       name: formState.videoName,
       url: formState.videoUrl,
       user: {
-        name: "Annie Tivadar",
+        name: "Alberto Moreno",
         uuid: "123",
       },
       img: formState.videoImage,
@@ -363,7 +364,9 @@ export const SimpleForm = (props) => {
             name="courseImage"
             accept="image/*"
             onChange={(e) =>
-              handleImageChange(e, "course", formState.courseImage, props.info.user._id)
+              // console.log(props.info)
+              // handleImageChange(e, "course", formState.courseImage, props.info.user._id)
+              handleImageChange(e, "course", formState.courseImage, props.info.user.uuid)
             }
           />
           <img
@@ -400,15 +403,19 @@ export const SimpleForm = (props) => {
             value={formState.videoUrl}
             onChange={onInputChange}
           />
-          <label htmlFor={formState.videoImage}>Elige una imagen:</label>
+          <label htmlFor="videoImage">Elige una imagen:</label>
           <input
             type="file"
             id="videoImage"
             className="userName"
             name="videoImage"
             accept="image/*"
-            onChange={(e) => handleImageChange(e, "video", formState.videoImage)}
+            onChange={(e) =>
+              handleImageChange(e, "video", formState.videoImage, props.info.user._id)
+              // handleImageChange(e,  console.log(props.info))
+            }
           />
+
           <img
             style={{ height: "250px", width: "250px" }}
             src={formState.videoImage}

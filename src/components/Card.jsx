@@ -115,7 +115,8 @@ export const Card = forwardRef((props, ref) => {
     case 1:
       cardOption = (
         <div className="serv-card">
-          <img className="serv-card-img" src={imgUrl} />
+          {/* <img className="serv-card-img" src={imgUrl} /> */}
+          <img className="serv-card-img" src={props.img} />
           <br />
           <h2 className="serv-title">{props.title}</h2>
           <div className="card-info">
@@ -252,7 +253,7 @@ export const Card = forwardRef((props, ref) => {
               <div className="admin-btns">
                 <button
                   onClick={() =>
-                    // console.log(props)
+                    // console.log(props.user)
                     openModal({ ...props, id: props.id, user: props.user })
                   }
                   className="edit-btn"

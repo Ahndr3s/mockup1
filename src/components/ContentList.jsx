@@ -30,6 +30,7 @@ export const ContentList = (props) => {
     } else if (props.contentType === "4") { //VIDEOS
       additionalProps = {
         url: content.url,
+        user: content.user
         // Más props específicas para VIDEOS
       };
     }
@@ -54,10 +55,10 @@ export const ContentList = (props) => {
 
   // Si listType es '1', devuelve el array de componentes Card
   if (props.listType === "1") {
-    // console.log(cardList)
     return cardList;
+    // console.log(cardList)
   }
-
+  
   // En cualquier otro caso, renderiza los componentes Card directamente
   return <>{cardList}</>;
 };

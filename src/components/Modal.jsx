@@ -34,7 +34,7 @@ export const Modal = ({
   }, [openModal]);
 
   const handleDelete = (type) => {
-    console.log(info)
+    // console.log(info)
     if (type === 2) {
       startDeletingCourse(); 
     } else if(type === 4) {
