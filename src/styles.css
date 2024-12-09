@@ -22,7 +22,7 @@ body {
 
 .page-title {
   text-align: center;
-  font-size: 45px;
+  font-size: 35px;
   line-height: 1;
   color: #fff;
   letter-spacing: 10px;
@@ -143,11 +143,11 @@ textarea {
 
 .slideT2 {
   min-width: 100%;
-  height: 100%;
+  /* height: 520px; */
 }
 
 .slideT2 .course-card {
-  height: 470px;
+  /* height: 470px; */
 }
 
 .dots {
@@ -374,7 +374,7 @@ textarea {
 
   .slideT2 {
     min-width: 100%;
-    height: 100%;
+    /* height: 100%; */
   }
 
   .slideT2 .course-card {

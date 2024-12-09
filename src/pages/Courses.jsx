@@ -10,7 +10,7 @@ import { useVideoStore } from "../hooks/useVideoStore";
 export const Courses = () => {
   const [courseModal, setcourseModal] = useState(false);
   const [videoModal, setvideoModal] = useState(false);
-  const { status } = useAuthStore();
+  const { status, user } = useAuthStore();
   const { courses, startLoadingCourses } = useCourseStore();
   const { videos, startLoadingVideos } = useVideoStore();
 
@@ -19,12 +19,14 @@ export const Courses = () => {
   }, []);
 
   const handleCreateCourse = () => {
+    console.log('soy el user '+user.name)
     setcourseModal(true);
   };
   const handleCreateVideo = () => {
+    console.log('soy el user '+user.name)
     setvideoModal(true);
   };
-
+  
   useEffect(() => {
     startLoadingCourses();
   }, [startLoadingCourses]);
@@ -52,6 +54,7 @@ export const Courses = () => {
                 formType={4}
                 formAction={0}
                 openModal={courseModal}
+                info={user}
                 closeModal={() => setcourseModal(false)}
               >
                 Crear Curso

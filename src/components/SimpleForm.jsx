@@ -366,7 +366,7 @@ export const SimpleForm = (props) => {
             onChange={(e) =>
               // console.log(props.info)
               // handleImageChange(e, "course", formState.courseImage, props.info.user._id)
-              handleImageChange(e, "course", formState.courseImage, props.info.user.uuid)
+              handleImageChange(e, "course", formState.courseImage, user.uuid)
             }
           />
           <img
@@ -411,7 +411,8 @@ export const SimpleForm = (props) => {
             name="videoImage"
             accept="image/*"
             onChange={(e) =>
-              handleImageChange(e, "video", formState.videoImage, props.info.user._id)
+              // handleImageChange(e, "video", formState.videoImage, props.info.user._id)
+              handleImageChange(e, "video", formState.videoImage, user.uuid)
               // handleImageChange(e,  console.log(props.info))
             }
           />

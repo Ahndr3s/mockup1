@@ -36,13 +36,14 @@ export const Modal = ({
   const handleDelete = (type) => {
     // console.log(info)
     if (type === 2) {
-      startDeletingCourse(); 
-    } else if(type === 4) {
+      startDeletingCourse();
+    } else if (type === 4) {
       startDeletingVideo();
     }
   };
 
   switch (modalType) {
+    // INSTAGRAM-LIKE BANNER FOR POSTS, VIDEOS, ETC...
     case 0:
       modalOption = (
         <div className="instPost">
@@ -79,42 +80,36 @@ export const Modal = ({
       );
       break;
 
-      case 1:
-        // modalOption = (
-        //   <SimpleForm
-        //   type={formType}
-        //   info={
-        //     formType === 4 ? activeCourse : formType === 5 ? activeVideo : null
-        //   }
-        //   close={closeModal}
-        // />
-        // )
-        modalOption = formAction === 1 ? (
+    //  INVOKES THE CREATE/EDIT FORM EITHER FOR COURSES OR VIDEOBLOGS
+    case 1:
+      modalOption =
+        formAction === 1 ? (
           <SimpleForm
             type={formType}
             info={
-              formType === 4 ? activeCourse : formType === 5 ? activeVideo : null
+              formType === 4
+                ? activeCourse
+                : formType === 5
+                ? activeVideo
+                : null
             }
             close={closeModal}
           />
         ) : (
-          <SimpleForm
-            type={formType}
-            info={null}
-            close={closeModal}
-          />
+          <SimpleForm type={formType} info={null} close={closeModal} />
         );
-        break;
+      break;
     
-      case 2:
-        modalOption = (
-          <div className="confirmDel">
+    // CONFIRM BANNER FOR DELETING EITHER COURSES OR VIDEOBLOGS   
+    case 2:
+      modalOption = (
+        <div className="confirmDel">
           <button className="serv-btn" onClick={() => handleDelete(info.type)}>
             Aceptar
           </button>
         </div>
-        )
-        break;
+      );
+      break;
   }
 
   return (
