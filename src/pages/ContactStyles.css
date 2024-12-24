@@ -26,6 +26,83 @@
   margin-bottom: 10vh;
 }
 
+.testimony-container {
+  display: flex;
+  font-size: large;
+  justify-content: space-evenly;
+}
+
+.testimony-quote, .testimony-res {
+  font-size: x-large;
+  width: 552px;
+  height: 750px;
+  border-color: #fff;
+  border-radius: 20px;
+  display: inherit;
+  justify-content: center;
+}
+
+.testimony-res {
+  background: linear-gradient(135deg, #102172 35%, #601875);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.res-header {
+  margin-left: 1rem;
+}
+
+.res-title {
+  font-weight: bold;
+}
+
+.res-date {
+  font-size: medium;
+}
+
+.testimony-quote {
+  background: linear-gradient(-135deg, #5760a3 35%, #601875);
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.t-quote {
+  margin: 1rem;
+}
+
+.res-img {
+  border-radius: 10px;
+  height: 300px;
+  margin-top: 1rem;
+  width: 500px;
+}
+
+
+.quoted {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-right: 12rem;
+  align-content: flex-start;
+}
+
+.quoted-txt {
+  color: gray;
+}
+
+.quoted-img {
+  border-radius: 40px;
+  height: 80px;
+  width: 80px;
+}
+
+
 @media only screen and (max-width: 600px) {
   .p-contact {
     margin-left: 2rem;
@@ -38,5 +115,26 @@
     margin-right: 3rem;
   }
 
-}
+  .testimony-container {
+    display: flex;
+    flex-direction: column;
+  }
 
+  .testimony-quote, .testimony-res {
+    width: fit-content;
+    height: 580px;
+  }
+
+  .testimony-res {
+    flex-direction: unset;
+    margin-bottom: 1rem;
+  }
+
+  .res-img {
+    width: 350px;
+  }
+
+  .quoted {
+    margin-right: 6rem;
+  }
+}
